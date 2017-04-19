@@ -14,7 +14,7 @@ public class MyMain extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/AdminWindow.fxml"));
         primaryStage.setTitle("АРМ працівника складу");
-        primaryStage.setScene(new Scene(root, 320, 160));
+        primaryStage.setScene(new Scene(root/*, 320, 160*/));
         primaryStage.show();
     }
 

@@ -6,12 +6,24 @@ package objects;
 public class User {
     private String username;
     private String password;
-    private int id;
+    private Long id;
 
-    public User() {
-
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.id = generateId();
     }
 
+    public User() {
+        this.username = "username";
+        this.password = "password";
+        this.id = generateId();
+    }
+
+    long generateId(){
+        return System.currentTimeMillis();
+    }
+    
     public String getUsername() {
         return username;
     }
@@ -28,11 +40,11 @@ public class User {
         this.password = password;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
