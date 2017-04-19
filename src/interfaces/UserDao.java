@@ -14,6 +14,7 @@ public interface UserDao {
     public void deleteUser(User user) throws SQLException;
     public User getUser(int id) throws SQLException;
     public List<User>  getUser() throws SQLException;
+    public void clearTable() throws SQLException;
 
 
 }

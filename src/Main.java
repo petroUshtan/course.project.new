@@ -4,9 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import objects.User;
-
-import java.sql.SQLException;
 
 public class Main extends Application {
 
@@ -18,21 +15,10 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public static void st() {
+    public static void main(String[] args) {
         Factory factory = Factory.getInstance();
         UserDao userDao = factory.getUserDao();
-        User u=new User();
-        try{
-            userDao.addUser(u);
-            System.out.println(userDao.getUser());
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public static void main(String[] args) {
-        st();
-//        launch(args);
+        launch(args);
 
     }
 }

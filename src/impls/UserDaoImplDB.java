@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Work on 18.04.2017.
  */
-public class UserDaoDB implements interfaces.UserDao {
+public class UserDaoImplDB implements interfaces.UserDao {
     @Override
     public void addUser(User user) throws SQLException {
         Session session = null;
@@ -71,4 +71,11 @@ public class UserDaoDB implements interfaces.UserDao {
         }
         return users;
     }
+
+    @Override
+    public void clearTable() throws SQLException {
+
+    }
+
+
 }

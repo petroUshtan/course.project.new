@@ -9,9 +9,7 @@ public class User {
     private int id;
 
     public User() {
-        this.username = "1";
-        this.password = "1";
-        this.id = 125;
+
     }
 
     public String getUsername() {
@@ -36,5 +34,14 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", id=" + id +
+                '}';
     }
 }

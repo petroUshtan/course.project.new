@@ -1,4 +1,4 @@
-import impls.UserDaoDB;
+import impls.UserDaoImplDB;
 import interfaces.UserDao;
 
 /**
@@ -16,7 +16,7 @@ public class Factory {
     }
 
     public UserDao getUserDao() {
-        if (userDao==null) userDao=new UserDaoDB();
+        if (userDao==null) userDao=new UserDaoImplDB();
         return userDao;
     }
 
