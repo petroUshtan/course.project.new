@@ -11,9 +11,11 @@ import java.util.List;
  * Created by Work on 19.04.2017.
  */
 public class LoginImplDB implements Login {
+
+    UserDao userDao = new UserDaoImplDB();
+
     @Override
     public boolean verify(String username, String password) {
-        UserDao userDao = new UserDaoImplDB();
         try {
             List<User> users = userDao.getUser();
             for (User u : users){

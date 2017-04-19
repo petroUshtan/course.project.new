@@ -7,16 +7,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminWindowController">
+<AnchorPane fx:id="anchPane" prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminWindowController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <HBox prefHeight="27.0" prefWidth="440.0" spacing="50.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Додати" />
-                  <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Змінити" />
-                  <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Видалити" />
+                  <Button fx:id="btnAdd" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Додати" />
+                  <Button fx:id="btnEdit" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Змінити" />
+                  <Button fx:id="btnDelete" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Видалити" />
                </children>
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -24,10 +23,14 @@
             </HBox>
          </top>
          <center>
-            <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <TableView fx:id="tvUserList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <columns>
+                  <TableColumn fx:id="tcId" prefWidth="219.0" text="id" />
+                  <TableColumn fx:id="tcUsername" minWidth="0.0" prefWidth="219.0" text="username" />
+               </columns></TableView>
          </center>
          <bottom>
-            <Label text="Кількість записів: " BorderPane.alignment="CENTER" />
+            <Label fx:id="lbCount" text="Кількість записів: " BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
    </children>
