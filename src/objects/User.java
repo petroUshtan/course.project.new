@@ -5,18 +5,21 @@ package objects;
  */
 public class User {
     private String username;
+    private String status;
     private String password;
     private Long id;
 
-    public User(String username, String password) {
+    public User(String username, String password, String status) {
         this.username = username;
         this.password = password;
+        this.status = status;
         this.id = generateId();
     }
 
     public User() {
         this.username = "username";
         this.password = "password";
+        this.status = "USER";
         this.id = generateId();
     }
 
@@ -46,6 +49,14 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

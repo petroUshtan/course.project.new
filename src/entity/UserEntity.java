@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "users")
-public class UserEntiry {
+public class UserEntity {
     @Id
     @Column(name = "id")
     private int id;
@@ -17,6 +17,17 @@ public class UserEntiry {
 
     @Column(name = "password")
     private String password;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Column(name = "status")
+    private String status;
 
     public int getId() {
         return id;

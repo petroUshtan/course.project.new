@@ -7,19 +7,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="anchPane" prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminWindowController">
+<AnchorPane fx:id="anchPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminWindowController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <TableView fx:id="tvUserList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <columns>
-                  <TableColumn fx:id="tcId" prefWidth="219.0" text="username" />
-                  <TableColumn fx:id="tcUsername" minWidth="0.0" prefWidth="219.0" text="password" />
+                  <TableColumn fx:id="tcId" prefWidth="143.0" text="username" />
+                  <TableColumn fx:id="tcUsername" minWidth="0.0" prefWidth="151.0" text="password" />
+                  <TableColumn fx:id="tcStatus" prefWidth="144.0" text="status" />
                </columns></TableView>
          </center>
          <bottom>
-            <VBox prefHeight="116.0" prefWidth="440.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="130.0" prefWidth="440.0" BorderPane.alignment="CENTER">
                <children>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="48.0" prefHeight="37.0" prefWidth="440.0" spacing="23.0">
+                     <children>
+                        <Label text="Password" />
+                        <TextField fx:id="tfPassword" prefHeight="25.0" prefWidth="274.0" />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </HBox>
                   <HBox alignment="CENTER" prefHeight="34.0" prefWidth="440.0" spacing="20.0">
                      <children>
                         <Label text="Username" />
@@ -29,10 +39,10 @@
                         <Insets left="20.0" right="20.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="37.0" prefWidth="440.0" spacing="23.0">
+                  <HBox alignment="CENTER" fillHeight="false" prefHeight="37.0" prefWidth="440.0" spacing="41.0">
                      <children>
-                        <Label text="Password" />
-                        <TextField fx:id="tfPassword" prefHeight="25.0" prefWidth="274.0" />
+                        <Label text="Status" />
+                        <ComboBox fx:id="cbStatus" prefWidth="274.0" />
                      </children>
                      <padding>
                         <Insets left="20.0" right="20.0" />

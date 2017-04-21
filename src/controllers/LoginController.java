@@ -21,7 +21,12 @@ public class LoginController {
     public void onSingin() {
         try {
            if(new LoginImplDB().verify(tfUsername.getText(),tfPassword.getText())){
-               Parent rootNode = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainWindow.fxml"));
+               Parent rootNode;
+//               if(tfUsername.equals("")){
+                   rootNode = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/AdminWindow.fxml"));
+//               }else if(tfUsername.equals("")){
+//
+//               }
 
                Stage stage = (Stage) singinButton.getScene().getWindow();
                stage.close();
