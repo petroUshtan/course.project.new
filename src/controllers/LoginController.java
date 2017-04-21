@@ -1,6 +1,7 @@
 package controllers;
 
 import impls.LoginImplDB;
+import interfaces.Login;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import objects.Status;
 
 public class LoginController {
     @FXML
@@ -19,14 +21,17 @@ public class LoginController {
 
 
     public void onSingin() {
+        Parent rootNode = null;
         try {
-           if(new LoginImplDB().verify(tfUsername.getText(),tfPassword.getText())){
-               Parent rootNode;
-//               if(tfUsername.equals("")){
+            Login lg = new LoginImplDB();
+            Status status = new Status();
+           if(lg.verify(tfUsername.getText(),tfPassword.getText())){
+
+               if((lg.getStatusOfUser(tfUsername.getText(),tfPassword.getText())).equals(status.getADMIN())){
                    rootNode = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/AdminWindow.fxml"));
-//               }else if(tfUsername.equals("")){
-//
-//               }
+               }else if((lg.getStatusOfUser(tfUsername.getText(),tfPassword.getText())).equals(status.getUSER())){
+                   rootNode = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainWindow.fxml"));
+               }
 
                Stage stage = (Stage) singinButton.getScene().getWindow();
                stage.close();

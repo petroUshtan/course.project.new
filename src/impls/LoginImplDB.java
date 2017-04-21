@@ -15,6 +15,22 @@ public class LoginImplDB implements Login {
     UserDao userDao = new UserDaoImplDB();
 
     @Override
+    public String getStatusOfUser(String username, String password){
+        String status="";
+        try {
+            List<User> users = userDao.getUser();
+            for (User u : users){
+                if((u.getUsername().equals(username))&&(u.getPassword().equals(password))){
+                    return u.getStatus();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return status;
+    }
+
+    @Override
     public boolean verify(String username, String password) {
         try {
             List<User> users = userDao.getUser();

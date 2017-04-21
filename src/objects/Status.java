@@ -9,24 +9,35 @@ import java.util.List;
 public class Status {
     String status;
 
-    Status(){
-        this.status="USER";
+    public Status() {
+        this.status = "USER";
     }
 
-    void setUSER(){
-        this.status="USER";
-    }
-    void setADMIN(){
-        this.status="ADMIN";
-    }
-    void setMANAGER(){
-        this.status="MANAGER";
-    }
-    String getStatus(){
-        return status;
+    public void setUSER() {
+        this.status = "USER";
     }
 
-    public static List<String> getStatuses(){
+    public void setADMIN() {
+        this.status = "ADMIN";
+    }
+
+    public void setMANAGER() {
+        this.status = "MANAGER";
+    }
+
+    public String getADMIN() {
+        return "ADMIN";
+    }
+
+    public String getUSER() {
+        return "USER";
+    }
+
+    public String getMANAGER() {
+        return "MANAGER";
+    }
+
+    public static List<String> getStatuses() {
         ArrayList<String> list = new ArrayList<String>();
         list.add("ADMIN");
         list.add("MANAGER");
