@@ -1,7 +1,9 @@
 package controllers;
 
 import impls.LoginImplDB;
+import impls.SoldProductDaoImplDB;
 import interfaces.Login;
+import interfaces.SoldProductDao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,7 +11,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import objects.SoldProduct;
 import objects.Status;
+
+import java.sql.SQLException;
 
 public class LoginController {
     @FXML
@@ -48,6 +53,12 @@ public class LoginController {
     }
 
     public void onCancel(){
-
+        SoldProductDao soldProductDao = new SoldProductDaoImplDB();
+        try {
+            soldProductDao.addSoldProduct(new SoldProduct(3L,"sdcs","sdf",
+                    "sdfsdf",645D,57D, 10L));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
