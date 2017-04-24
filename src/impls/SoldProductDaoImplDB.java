@@ -1,7 +1,6 @@
 package impls;
 
 import objects.SoldProduct;
-import objects.User;
 import org.hibernate.Session;
 import util.HibernateUtil;
 
@@ -64,7 +63,7 @@ public class SoldProductDaoImplDB implements interfaces.SoldProductDao {
         Session session=null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            soldProducts = session.createCriteria(User.class).list();
+            soldProducts = session.createCriteria(SoldProduct.class).list();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {

@@ -88,4 +88,18 @@ public class SoldProduct {
     public void setDateTime(Long dateTime) {
         this.dateTime = dateTime;
     }
+
+    @Override
+    public String toString() {
+        return "SoldProduct{" +
+                "soldProductId=" + soldProductId +
+                ", soldProductCode=" + soldProductCode +
+                ", soldProductName='" + soldProductName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", clientName='" + clientName + '\'' +
+                ", soldProductNumber=" + soldProductNumber +
+                ", soldProductPrice=" + soldProductPrice +
+                ", dateTime=" + dateTime +
+                '}';
+    }
 }

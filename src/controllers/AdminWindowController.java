@@ -38,19 +38,18 @@ public class AdminWindowController {
     UserDao userDao = new UserDaoImplDB();
     ObservableList<User> observableList ;
     ObservableList<String> observableListStatus ;
-    @FXML
+@FXML
     void initialize(){
         try {
             observableList= FXCollections.observableArrayList(userDao.getUser());
             observableListStatus= FXCollections.observableArrayList(Status.getStatuses());
-            userDao.addUser(new User());
         }
         catch (SQLException e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         tcId.setCellValueFactory(new PropertyValueFactory<User,String>("username"));
         tcUsername.setCellValueFactory(new PropertyValueFactory<User,String>("password"));
-        tcUsername.setCellValueFactory(new PropertyValueFactory<User,String>("status"));
+        tcStatus.setCellValueFactory(new PropertyValueFactory<User,String>("status"));
         tvUserList.setItems(observableList);
         cbStatus.setItems(observableListStatus);
 
@@ -130,7 +129,7 @@ public class AdminWindowController {
         }
         tcId.setCellValueFactory(new PropertyValueFactory<User,String>("username"));
         tcUsername.setCellValueFactory(new PropertyValueFactory<User,String>("password"));
-        tcStatus.setCellValueFactory(new PropertyValueFactory<User,String>("status"));
+        tcStatus.setCellValueFactory(new PropertyValueFactory<User, String>("status"));
         tvUserList.setItems(observableList);
         clearField();
     }

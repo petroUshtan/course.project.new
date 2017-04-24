@@ -15,6 +15,7 @@ import objects.SoldProduct;
 import objects.Status;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class LoginController {
     @FXML
@@ -46,6 +47,7 @@ public class LoginController {
                mainStage.setScene(scene);
                mainStage.setTitle("АРМ працівника складу");
                mainStage.show();
+
            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -55,8 +57,10 @@ public class LoginController {
     public void onCancel(){
         SoldProductDao soldProductDao = new SoldProductDaoImplDB();
         try {
-            soldProductDao.addSoldProduct(new SoldProduct(3L,"sdcs","sdf",
-                    "sdfsdf",645D,57D, 10L));
+            List<SoldProduct> soldProducts = soldProductDao.getSoldProducts();
+            for (SoldProduct soldProduct : soldProducts){
+                System.out.println(soldProduct.toString());
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
