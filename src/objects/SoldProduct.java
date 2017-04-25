@@ -1,5 +1,7 @@
 package objects;
 
+import java.util.Date;
+
 /**
  * Created by Work on 24.04.2017.
  */
@@ -11,11 +13,11 @@ public class SoldProduct {
     private String clientName;
     private Double soldProductNumber;
     private Double soldProductPrice;
-    private Long dateTime;
+    private Date dateTime;
 
     public SoldProduct() {}
 
-    public SoldProduct(Long soldProductCode, String soldProductName, String userName, String clientName, Double soldProductNumber, Double soldProductPrice, Long dateTime) {
+    public SoldProduct(Long soldProductCode, String soldProductName, String userName, String clientName, Double soldProductNumber, Double soldProductPrice, Date dateTime) {
         this.soldProductCode = soldProductCode;
         this.soldProductName = soldProductName;
         this.userName = userName;
@@ -81,11 +83,11 @@ public class SoldProduct {
         this.soldProductPrice = soldProductPrice;
     }
 
-    public Long getDateTime() {
+    public Date getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Long dateTime) {
+    public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
 

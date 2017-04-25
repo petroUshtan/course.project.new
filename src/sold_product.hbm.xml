@@ -13,6 +13,6 @@
         <property name="clientName" column="clientName" type="java.lang.String"/>
         <property name="soldProductNumber" column="soldProductNumber" type="java.lang.Double"/>
         <property name="soldProductPrice" column="soldProductPrice" type="java.lang.Double"/>
-        <property name="dateTime" column="dateTime" type="java.lang.Long"/>
+        <property name="dateTime" column="dateTime" type="java.util.Date"/>
     </class>
 </hibernate-mapping>

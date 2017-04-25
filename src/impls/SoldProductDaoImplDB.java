@@ -20,7 +20,7 @@ public class SoldProductDaoImplDB implements interfaces.SoldProductDao {
             session.save(soldProduct);
             session.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {
             if ((session != null) && (session.isOpen())) session.close();
         }
@@ -35,7 +35,7 @@ public class SoldProductDaoImplDB implements interfaces.SoldProductDao {
             session.delete(soldProduct);
             session.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {
             if ((session != null) && (session.isOpen())) session.close();
         }
@@ -49,7 +49,7 @@ public class SoldProductDaoImplDB implements interfaces.SoldProductDao {
             session = HibernateUtil.getSessionFactory().openSession();
             result = (SoldProduct) session.load(SoldProduct.class, id);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {
             if ((session != null) && (session.isOpen())) session.close();
         }
@@ -65,7 +65,7 @@ public class SoldProductDaoImplDB implements interfaces.SoldProductDao {
             session = HibernateUtil.getSessionFactory().openSession();
             soldProducts = session.createCriteria(SoldProduct.class).list();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {
             if ((session != null) && (session.isOpen())) session.close();
         }
