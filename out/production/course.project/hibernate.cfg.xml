@@ -14,6 +14,10 @@
 
         <mapping resource="user.hbm.xml"/>
         <mapping resource="sold_product.hbm.xml"/>
+        <mapping resource="coming_product.hbm.xml"/>
+        <mapping resource="product.hbm.xml"/>
+        <mapping resource="client.hbm.xml"/>
+        <mapping resource="department.hbm.xml"/>
 
         <!--<property name="hbm2ddl.auto">update</property>-->
         <!-- DB schema will be updated if needed -->

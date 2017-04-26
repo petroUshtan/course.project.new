@@ -1,3 +1,4 @@
+import controllers.CFactory;
 import interfaces.UserDao;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,7 +8,7 @@ import javafx.stage.Stage;
 
 public class MyMain extends Application {
 
-    Factory factory = Factory.getInstance();
+    CFactory factory = CFactory.getInstance();
     public UserDao userDao = factory.getUserDao();
 
     @Override

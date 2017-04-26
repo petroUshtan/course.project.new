@@ -1,0 +1,15 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="objects.Product" table="products">
+        <id name="productId" type="java.lang.Long" column="productId">
+            <generator class="native"></generator>
+        </id>
+        <property name="productNumber" column="productNumber" type="java.lang.Double"/>
+        <property name="productPrice" column="productPrice" type="java.lang.Double"/>
+        <property name="productDepartmentId" column="productDepartmentId" type="java.lang.Long"/>
+        <property name="productName" column="productName" type="java.lang.String"/>
+    </class>
+</hibernate-mapping>

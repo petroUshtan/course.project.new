@@ -1,9 +1,10 @@
 package controllers;
 
-import impls.ComingProductDaoImplDB;
 import impls.LoginImplDB;
-import interfaces.ComingProductDao;
+import interfaces.ClientDao;
+import interfaces.DepartmentDao;
 import interfaces.Login;
+import interfaces.ProductDao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,11 +12,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import objects.ComingProduct;
+import objects.Department;
 import objects.Status;
 
 import java.sql.SQLException;
-import java.util.List;
+
 
 public class LoginController {
     @FXML
@@ -54,16 +55,13 @@ public class LoginController {
         }
     }
 
-    public void onCancel(){
-        ComingProductDao comingProductDao = new ComingProductDaoImplDB() {
-        };
-        try {
-            List<ComingProduct> comingProducts = comingProductDao.getComingProducts();
-            for (ComingProduct comingProduct : comingProducts){
-                System.out.println(comingProduct.toString());
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void onCancel() throws SQLException {
+        CFactory cFactory = CFactory.getInstance();
+        ClientDao clientDao= cFactory.getClientDao();
+        ProductDao productDao = cFactory.getProductDao();
+        DepartmentDao departmentDao = cFactory.getDepartmentDao();
+
+        departmentDao.addDepartment(new Department("Sopiv","N1"));
+
     }
 }

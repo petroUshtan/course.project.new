@@ -1,0 +1,13 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="objects.Department" table="department">
+        <id name="departmentId" type="java.lang.Long" column="departmentId">
+            <generator class="native"></generator>
+        </id>
+        <property name="departmentAddress" column="departmentAddress" type="java.lang.String"/>
+        <property name="departmentName" column="departmentName" type="java.lang.String"/>
+    </class>
+</hibernate-mapping>
