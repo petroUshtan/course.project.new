@@ -7,33 +7,33 @@ import java.util.List;
  * Created by Work on 20.04.2017.
  */
 public class Status {
-    String status;
+    private static String status;
 
     public Status() {
         this.status = "USER";
     }
 
-    public void setUSER() {
-        this.status = "USER";
+    public static void setUSER() {
+        status = "USER";
     }
 
-    public void setADMIN() {
-        this.status = "ADMIN";
+    public static void setADMIN() {
+        status = "ADMIN";
     }
 
-    public void setMANAGER() {
-        this.status = "MANAGER";
+    public static void setMANAGER() {
+        status = "MANAGER";
     }
 
-    public String getADMIN() {
+    public static String getADMIN() {
         return "ADMIN";
     }
 
-    public String getUSER() {
+    public static String getUSER() {
         return "USER";
     }
 
-    public String getMANAGER() {
+    public static String getMANAGER() {
         return "MANAGER";
     }
 

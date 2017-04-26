@@ -12,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import objects.Department;
 import objects.Status;
 
 import java.sql.SQLException;
@@ -31,12 +30,13 @@ public class LoginController {
         Parent rootNode = null;
         try {
             Login lg = new LoginImplDB();
-            Status status = new Status();
-           if(lg.verify(tfUsername.getText(),tfPassword.getText())){
+            if(lg.verify(tfUsername.getText(),tfPassword.getText())){
 
-               if((lg.getStatusOfUser(tfUsername.getText(),tfPassword.getText())).equals(status.getADMIN())){
+               if((lg.getStatusOfUser(tfUsername.getText(),tfPassword.getText())).equals(Status.getADMIN())){
                    rootNode = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/AdminWindow.fxml"));
-               }else if((lg.getStatusOfUser(tfUsername.getText(),tfPassword.getText())).equals(status.getUSER())){
+//                   Session session= HibernateUtil.getSessionFactory().openSession();
+
+               }else if((lg.getStatusOfUser(tfUsername.getText(),tfPassword.getText())).equals(Status.getUSER())){
                    rootNode = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainWindow.fxml"));
                }
 
@@ -48,10 +48,9 @@ public class LoginController {
                mainStage.setScene(scene);
                mainStage.setTitle("АРМ працівника складу");
                mainStage.show();
-
            }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -60,8 +59,5 @@ public class LoginController {
         ClientDao clientDao= cFactory.getClientDao();
         ProductDao productDao = cFactory.getProductDao();
         DepartmentDao departmentDao = cFactory.getDepartmentDao();
-
-        departmentDao.addDepartment(new Department("Sopiv","N1"));
-
     }
 }

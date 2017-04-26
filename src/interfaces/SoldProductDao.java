@@ -14,6 +14,7 @@ public interface SoldProductDao {
     public void deleteSoldProduct(SoldProduct soldProduct) throws SQLException;
     public SoldProduct getSoldProduct(Long id) throws SQLException;
     public List<SoldProduct>  getSoldProducts() throws SQLException;
+    public List<SoldProduct>  getSoldProducts(String userName) throws SQLException;
     public void clearTable() throws SQLException;
 
 

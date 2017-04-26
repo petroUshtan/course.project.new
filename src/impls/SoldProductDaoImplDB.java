@@ -1,7 +1,9 @@
 package impls;
 
 import objects.SoldProduct;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import util.HibernateUtil;
 
 import java.sql.SQLException;
@@ -64,6 +66,24 @@ public class SoldProductDaoImplDB implements interfaces.SoldProductDao {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             soldProducts = session.createCriteria(SoldProduct.class).list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if ((session != null) && (session.isOpen())) session.close();
+        }
+        return soldProducts;
+    }
+
+    @Override
+    public List<SoldProduct> getSoldProducts(String  userName) throws SQLException {
+        List<SoldProduct> soldProducts= null;
+
+        Session session=null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            Criteria criteria = session.createCriteria(SoldProduct.class);
+            criteria.add(Restrictions.eq("userName", userName));
+            soldProducts = criteria.list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

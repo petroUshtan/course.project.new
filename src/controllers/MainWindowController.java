@@ -4,6 +4,7 @@ import impls.SoldProductDaoImplDB;
 import interfaces.SoldProductDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -12,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import objects.SoldProduct;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by Work on 13.04.2017.
@@ -30,21 +32,16 @@ public class MainWindowController {
     TableColumn<SoldProduct,String> tcSoldProductNumber=new TableColumn<>();
     TableColumn<SoldProduct,String> tcSoldProductPrice=new TableColumn<>();
     TableColumn<SoldProduct,String> tcDateTime=new TableColumn<>();
-@FXML
+
+    @FXML
     void initialize() {
-        this.fillSoldProductTable();
+            fillForUser();
     }
 
-    void fillSoldProductTable(){
-        System.out.println("kjhvcjghkjljcfxhcghjkgxhcfhj");
-        SoldProductDao soldProductDao = new SoldProductDaoImplDB();
+    void fillSoldProductTable(List<SoldProduct> soldProductList){
         ObservableList<SoldProduct> observableList = null;
-        try {
-            observableList= FXCollections.observableArrayList(soldProductDao.getSoldProducts());
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
+        observableList= FXCollections.observableArrayList(soldProductList);
+
         tcsoldProductId.setCellValueFactory(new PropertyValueFactory<SoldProduct,String>("soldProductId"));
         tcsoldProductId.setText("ID");
         tcSoldProductCode.setCellValueFactory(new PropertyValueFactory<SoldProduct,String>("soldProductCode"));
@@ -68,5 +65,46 @@ public class MainWindowController {
 //        tcStatus.setCellValueFactory(new PropertyValueFactory<SoldProduct, String>("status"));
 //        tvUserList.setItems(observableList);
 
+    }
+    private void fillForUser(){
+        SoldProductDao soldProductDao = new SoldProductDaoImplDB();
+        List<SoldProduct> soldProducts = null;
+        try{
+            soldProducts = soldProductDao.getSoldProducts("user1");
+            fillSoldProductTable(soldProducts);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void fillForManager(){
+
+    }
+
+    public void onExcelReport(ActionEvent actionEvent) {
+    }
+
+    public void onWordReport(ActionEvent actionEvent) {
+    }
+
+    public void onClose(ActionEvent actionEvent) {
+    }
+
+    public void onMbCancel(ActionEvent actionEvent) {
+    }
+
+    public void onMbCopy(ActionEvent actionEvent) {
+    }
+
+    public void onMbPaste(ActionEvent actionEvent) {
+    }
+
+    public void onMbCut(ActionEvent actionEvent) {
+    }
+
+    public void onMbDelete(ActionEvent actionEvent) {
+    }
+
+    public void onMbHelp(ActionEvent actionEvent) {
     }
 }

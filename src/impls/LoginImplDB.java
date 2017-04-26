@@ -25,13 +25,13 @@ public class LoginImplDB implements Login {
                 }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         return status;
     }
 
     @Override
-    public boolean verify(String username, String password) {
+    public boolean verify( String username, String password) {
         try {
             List<User> users = userDao.getUser();
             for (User u : users){
@@ -40,7 +40,7 @@ public class LoginImplDB implements Login {
                 }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         return false;
     }

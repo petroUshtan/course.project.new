@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="course.project">
+    <output-path>$PROJECT_DIR$/out/artifacts/course_project</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="MyMain" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="course_project.jar">
+        <element id="module-output" name="course.project" />
+        <element id="library" level="project" name="Hibernate 5.2.9-5.2.9" />
+        <element id="library" level="project" name="postgresql-9.4-1202.jdbc4" />
+      </element>
+    </root>
+  </artifact>
+</component>
