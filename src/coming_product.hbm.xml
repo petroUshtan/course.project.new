@@ -1,0 +1,18 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="objects.ComingProduct" table="coming_products">
+        <id name="comingProductId" type="java.lang.Long" column="comingProductId">
+            <generator class="native"></generator>
+        </id>
+        <property name="comingProductName" column="comingProductName" type="java.lang.String"/>
+        <property name="comingProductCode" column="comingProductCode" type="java.lang.Long"/>
+        <property name="userName" column="userName" type="java.lang.String"/>
+        <property name="clientName" column="clientName" type="java.lang.String"/>
+        <property name="comingProductNumber" column="comingProductNumber" type="java.lang.Double"/>
+        <property name="comingProductPrice" column="comingProductPrice" type="java.lang.Double"/>
+        <property name="dateTime" column="dateTime" type="java.util.Date"/>
+    </class>
+</hibernate-mapping>

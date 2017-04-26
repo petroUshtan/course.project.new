@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
+<AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="440.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" layoutX="179.0" layoutY="35.0" prefHeight="245.0" prefWidth="373.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -26,7 +25,7 @@
                               <TableView fx:id="soldProductTableView" prefHeight="243.0" prefWidth="207.0" />
                            </content>
                         </Tab>
-                      <Tab text="Статистика">
+                      <Tab fx:id="tvComing" text="Прихід">
                            <content>
                               <TableView prefHeight="200.0" prefWidth="200.0" />
                            </content>

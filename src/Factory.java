@@ -1,4 +1,8 @@
+import impls.ComingProductDaoImplDB;
+import impls.SoldProductDaoImplDB;
 import impls.UserDaoImplDB;
+import interfaces.ComingProductDao;
+import interfaces.SoldProductDao;
 import interfaces.UserDao;
 
 /**
@@ -7,6 +11,8 @@ import interfaces.UserDao;
 public class Factory {
     public static Factory instance = new Factory();
     public UserDao userDao;
+    public SoldProductDao soldProductDao;
+    public ComingProductDao comingProductDao;
 
     private Factory() {
     }
@@ -20,4 +26,13 @@ public class Factory {
         return userDao;
     }
 
+    public SoldProductDao getSoldProductDao() {
+        if (soldProductDao==null) soldProductDao=new SoldProductDaoImplDB();
+        return soldProductDao;
+    }
+
+    public ComingProductDao getComingProductDao() {
+        if (comingProductDao==null) comingProductDao=new ComingProductDaoImplDB();
+        return comingProductDao;
+    }
 }
