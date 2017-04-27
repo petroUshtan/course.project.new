@@ -5,7 +5,7 @@
 <hibernate-mapping>
     <class name="objects.Product" table="products">
         <id name="productId" type="java.lang.Long" column="productId">
-            <generator class="native"></generator>
+            <!--<generator class="native"></generator>-->
         </id>
         <property name="productNumber" column="productNumber" type="java.lang.Double"/>
         <property name="productPrice" column="productPrice" type="java.lang.Double"/>

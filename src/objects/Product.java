@@ -1,5 +1,7 @@
 package objects;
 
+import util.MyUtils;
+
 /**
  * Created by Work on 26.04.2017.
  */
@@ -13,8 +15,8 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long productId, String productName, Double productNumber, Double productPrice, Long productDepartment) {
-        this.productId = productId;
+    public Product(String productName, Double productNumber, Double productPrice, Long productDepartment) {
+        this.productId = MyUtils.setUniqueId();
         this.productName = productName;
         this.productNumber = productNumber;
         this.productPrice = productPrice;

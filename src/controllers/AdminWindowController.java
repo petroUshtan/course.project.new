@@ -38,7 +38,7 @@ public class AdminWindowController {
     UserDao userDao = new UserDaoImplDB();
     ObservableList<User> observableList ;
     ObservableList<String> observableListStatus ;
-@FXML
+    @FXML
     void initialize(){
         try {
             observableList= FXCollections.observableArrayList(userDao.getUser());

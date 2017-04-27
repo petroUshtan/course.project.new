@@ -92,6 +92,8 @@ public class SoldProductDaoImplDB implements interfaces.SoldProductDao {
         return soldProducts;
     }
 
+
+
     @Override
     public void clearTable() throws SQLException {
 

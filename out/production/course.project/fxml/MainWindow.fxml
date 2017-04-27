@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="440.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
+<AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="440.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" layoutX="179.0" layoutY="35.0" prefHeight="245.0" prefWidth="373.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <items>
@@ -31,7 +33,7 @@
                         </Tab>
                       <Tab text="Прийняти">
                            <content>
-                              <TableView fx:id="comingTableView" prefHeight="200.0" prefWidth="200.0" />
+                              <TableView fx:id="comingProductTableView" prefHeight="200.0" prefWidth="200.0" />
                            </content>
                         </Tab>
                         <Tab text="Статистика">
@@ -55,18 +57,16 @@
         <menus>
           <Menu mnemonicParsing="false" text="Файл">
             <items>
-              <MenuItem fx:id="mbExcelReport" mnemonicParsing="false" onAction="#onExcelReport" text="Звіт Excel" />
-                  <MenuItem fx:id="mbWordReport" mnemonicParsing="false" onAction="#onWordReport" text="Звіт Word" />
-                  <MenuItem fx:id="mbClose" mnemonicParsing="false" onAction="#onClose" text="Закрити" />
+              <MenuItem fx:id="mbExcelReport" mnemonicParsing="false" onAction="#onExcelReport" text="Продані" />
+                  <MenuItem fx:id="mbWordReport" mnemonicParsing="false" onAction="#onWordReport" text="Отримані" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Редагувати">
             <items>
-              <MenuItem fx:id="mbCancel" mnemonicParsing="false" onAction="#onMbCancel" text="Відмінити" />
-                  <MenuItem fx:id="mbCopy" mnemonicParsing="false" onAction="#onMbCopy" text="Копіювати" />
-                  <MenuItem fx:id="mbPaste" mnemonicParsing="false" onAction="#onMbPaste" text="Вставити" />
-                  <MenuItem fx:id="mbCut" mnemonicParsing="false" onAction="#onMbCut" text="Вирізати" />
-                  <MenuItem fx:id="mbDelete" mnemonicParsing="false" onAction="#onMbDelete" text="Видалити" />
+              <MenuItem fx:id="mbAddSoldProduct" mnemonicParsing="false" onAction="#onMbAddSoldProduct" text="Додати проданий" />
+                  <MenuItem fx:id="mbAddComingProduct" mnemonicParsing="false" onAction="#onMbAddComingProduct" text="Додати отриманий" />
+                  <MenuItem fx:id="mbDeleteSoldProduct" mnemonicParsing="false" onAction="#onMbDeleteSoldProduct" text="Видалити проданий" />
+                  <MenuItem fx:id="mbDeleteComing" mnemonicParsing="false" onAction="#onMbDeleteCommingProduct" text="Видалити отриманий" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Довідка">

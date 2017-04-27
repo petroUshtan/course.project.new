@@ -1,5 +1,7 @@
 package objects;
 
+import util.MyUtils;
+
 import java.util.Date;
 
 /**
@@ -7,7 +9,6 @@ import java.util.Date;
  */
 public class SoldProduct {
     private Long soldProductId;
-    private Long soldProductCode;
     private String soldProductName;
     private String userName;
     private String clientName;
@@ -18,7 +19,7 @@ public class SoldProduct {
     public SoldProduct() {}
 
     public SoldProduct(Long soldProductCode, String soldProductName, String userName, String clientName, Double soldProductNumber, Double soldProductPrice, Date dateTime) {
-        this.soldProductCode = soldProductCode;
+        this.soldProductId= MyUtils.setUniqueId();
         this.soldProductName = soldProductName;
         this.userName = userName;
         this.clientName = clientName;
@@ -33,14 +34,6 @@ public class SoldProduct {
 
     public void setSoldProductId(Long soldProductId) {
         this.soldProductId = soldProductId;
-    }
-
-    public Long getSoldProductCode() {
-        return soldProductCode;
-    }
-
-    public void setSoldProductCode(Long soldProductCode) {
-        this.soldProductCode = soldProductCode;
     }
 
     public String getSoldProductName() {
@@ -95,7 +88,6 @@ public class SoldProduct {
     public String toString() {
         return "SoldProduct{" +
                 "soldProductId=" + soldProductId +
-                ", soldProductCode=" + soldProductCode +
                 ", soldProductName='" + soldProductName + '\'' +
                 ", userName='" + userName + '\'' +
                 ", clientName='" + clientName + '\'' +

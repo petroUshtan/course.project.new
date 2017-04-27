@@ -1,5 +1,7 @@
 package objects;
 
+import util.MyUtils;
+
 import java.util.Date;
 
 /**
@@ -7,7 +9,6 @@ import java.util.Date;
  */
 public class ComingProduct {
     private Long comingProductId;
-    private Long comingProductCode;
     private String comingProductName;
     private String userName;
     private String clientName;
@@ -18,9 +19,8 @@ public class ComingProduct {
     public ComingProduct() {
     }
 
-    public ComingProduct(Long comingProductId, Long comingProductCode, String comingProductName, String userName, String clientName, Double comingProductNumber, Double comingProductPrice, Date dateTime) {
-        this.comingProductId = comingProductId;
-        this.comingProductCode = comingProductCode;
+    public ComingProduct(String comingProductName, String userName, String clientName, Double comingProductNumber, Double comingProductPrice, Date dateTime) {
+        this.comingProductId = MyUtils.setUniqueId();
         this.comingProductName = comingProductName;
         this.userName = userName;
         this.clientName = clientName;
@@ -35,14 +35,6 @@ public class ComingProduct {
 
     public void setComingProductId(Long comingProductId) {
         this.comingProductId = comingProductId;
-    }
-
-    public Long getComingProductCode() {
-        return comingProductCode;
-    }
-
-    public void setComingProductCode(Long comingProductCode) {
-        this.comingProductCode = comingProductCode;
     }
 
     public String getComingProductName() {
@@ -95,7 +87,7 @@ public class ComingProduct {
 
     @Override
     public String toString() {
-        return comingProductId +comingProductCode+ comingProductName + userName +
+        return comingProductId + comingProductName + userName +
                 clientName + comingProductNumber + comingProductPrice + dateTime;
     }
 }

@@ -5,7 +5,7 @@
 <hibernate-mapping>
     <class name="objects.Client" table="clients">
         <id name="clientId" type="java.lang.Long" column="clientId">
-            <generator class="native"></generator>
+            <!--<generator class="native"></generator>-->
         </id>
         <property name="clientFIO" column="clientFIO" type="java.lang.String"/>
         <property name="registerTime" column="productPrice" type="java.util.Date"/>
