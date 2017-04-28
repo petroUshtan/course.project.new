@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import objects.ComingProduct;
 import objects.SoldProduct;
 import util.MyUtils;
@@ -76,6 +77,9 @@ public class MainWindowController {
         tcComingProductPrice.setText("Ціна");
         tcComingDateTime.setCellValueFactory(new PropertyValueFactory<ComingProduct,String>("dateTime"));
         tcComingDateTime.setText("Дата");
+        if(!comingProductTableView.getColumns().isEmpty()){
+            comingProductTableView.getColumns().clear();
+        }
         comingProductTableView.getColumns().addAll(tcComingProductId,
                 tcComingProductName,tcComingUserName,tcComingClientName,tcComingProductNumber,tcComingProductPrice,tcComingDateTime);
         comingProductTableView.setItems(observableList);
@@ -103,6 +107,10 @@ public class MainWindowController {
         tcSoldProductPrice.setText("Ціна");
         tcSoldDateTime.setCellValueFactory(new PropertyValueFactory<SoldProduct,String>("dateTime"));
         tcSoldDateTime.setText("Дата");
+
+        if(!soldProductTableView.getColumns().isEmpty()){
+            soldProductTableView.getColumns().clear();
+        }
         soldProductTableView.getColumns().addAll(tcsoldProductId,
                 tcSoldProductName,tcSoldUserName,tcSoldClientName,tcSoldProductNumber,tcSoldProductPrice,tcSoldDateTime);
         soldProductTableView.setItems(observableList);
@@ -112,7 +120,7 @@ public class MainWindowController {
 
     }
 
-    private void fillForUser() throws FileNotFoundException {
+    public void fillForUser() throws FileNotFoundException {
         SoldProductDao soldProductDao = CFactory.getInstance().getSoldProductDao();
         ComingProductDao comingProductDao = CFactory.getInstance().getComingProductDao();
         String[] strings = MyUtils.readTmpFile();
@@ -151,7 +159,13 @@ public class MainWindowController {
             stage.setScene(scene);
             stage.setResizable(false);
             stage.initModality(Modality.WINDOW_MODAL);
-//            stage.initOwner(((Stage)actionEvent.getSource()).getScene().getWindow());
+            stage.setOnCloseRequest((WindowEvent we) -> {
+                try {
+                    fillForUser();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            });
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -168,6 +182,13 @@ public class MainWindowController {
             stage.setResizable(false);
             stage.initModality(Modality.WINDOW_MODAL);
 //            stage.initOwner(((Stage)actionEvent.getSource()).getScene().getWindow());
+            stage.setOnCloseRequest((WindowEvent we) -> {
+                try {
+                    fillForUser();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            });
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -181,5 +202,6 @@ public class MainWindowController {
     public void onMbDeleteCommingProduct(ActionEvent actionEvent) {
 
     }
+
 
 }

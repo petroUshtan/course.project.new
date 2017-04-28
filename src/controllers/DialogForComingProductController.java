@@ -10,8 +10,8 @@ import objects.Product;
 import util.MyUtils;
 
 import java.io.FileNotFoundException;
-import java.util.Date;
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  * Created by Work on 26.04.2017.
@@ -41,10 +41,10 @@ public class DialogForComingProductController {
 
         productDao.addProduct(product);
         comingProductDao.addComingProduct(comingProduct);
-
     }
 
     public void onCancel(ActionEvent actionEvent) {
 
     }
+
 }
