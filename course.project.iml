@@ -29,5 +29,15 @@
       </library>
     </orderEntry>
     <orderEntry type="library" exported="" name="postgresql-9.4-1202.jdbc4" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/poi-3.5-FINAL.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="org.apache.poi:poi-excelant:3.10-FINAL" level="project" />
   </component>
 </module>

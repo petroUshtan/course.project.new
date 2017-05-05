@@ -9,50 +9,46 @@
     <bookmark url="file://$PROJECT_DIR$/src/user.hbm.xml" line="5" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="add deleting og coming product">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1edf9344-3a09-4ded-9e57-c61e3507e00e.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/course.project/controllers/AdminWindowController.class" afterPath="$PROJECT_DIR$/out/production/course.project/controllers/AdminWindowController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/course.project/controllers/LoginController.class" afterPath="$PROJECT_DIR$/out/production/course.project/controllers/LoginController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/course.project/controllers/MainWindowController.class" afterPath="$PROJECT_DIR$/out/production/course.project/controllers/MainWindowController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/course.project/objects/User.class" afterPath="$PROJECT_DIR$/out/production/course.project/objects/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1edf9344-3a09-4ded-9e57-c61e3507e00e/_metadata_/metadata" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1edf9344-3a09-4ded-9e57-c61e3507e00e/_metadata_/metadata.keystream" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1edf9344-3a09-4ded-9e57-c61e3507e00e/_metadata_/metadata.keystream.len" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1edf9344-3a09-4ded-9e57-c61e3507e00e/_metadata_/metadata.len" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1edf9344-3a09-4ded-9e57-c61e3507e00e/_metadata_/metadata.values.at" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1edf9344-3a09-4ded-9e57-c61e3507e00e/_metadata_/metadata_i" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1edf9344-3a09-4ded-9e57-c61e3507e00e/_metadata_/metadata_i.len" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/243561f8-2d61-4039-b824-4e096bc56f20/_metadata_/metadata" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/243561f8-2d61-4039-b824-4e096bc56f20/_metadata_/metadata.keystream" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/243561f8-2d61-4039-b824-4e096bc56f20/_metadata_/metadata.keystream.len" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/243561f8-2d61-4039-b824-4e096bc56f20/_metadata_/metadata.len" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/243561f8-2d61-4039-b824-4e096bc56f20/_metadata_/metadata.values.at" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/243561f8-2d61-4039-b824-4e096bc56f20/_metadata_/metadata_i" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/243561f8-2d61-4039-b824-4e096bc56f20/_metadata_/metadata_i.len" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/5a4ce4e3-4bfd-4fc8-9601-ce2e5a10ed1f/_metadata_/metadata" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/5a4ce4e3-4bfd-4fc8-9601-ce2e5a10ed1f/_metadata_/metadata.keystream" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/5a4ce4e3-4bfd-4fc8-9601-ce2e5a10ed1f/_metadata_/metadata.keystream.len" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/5a4ce4e3-4bfd-4fc8-9601-ce2e5a10ed1f/_metadata_/metadata.len" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/5a4ce4e3-4bfd-4fc8-9601-ce2e5a10ed1f/_metadata_/metadata_i" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/5a4ce4e3-4bfd-4fc8-9601-ce2e5a10ed1f/_metadata_/metadata_i.len" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/ant-1.8.2.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/ant-launcher-1.8.2.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/commons-codec-1.5.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/poi-3.10-FINAL.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/poi-3.5-FINAL.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/poi-excelant-3.10-FINAL.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/poi-ooxml-3.10-FINAL.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/poi-ooxml-schemas-3.10-FINAL.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/stax-api-1.0.1.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/xml-apis-1.0.b2.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/xmlbeans-2.3.0.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1edf9344-3a09-4ded-9e57-c61e3507e00e/storage.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/5a4ce4e3-4bfd-4fc8-9601-ce2e5a10ed1f/storage.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/org_apache_poi_poi_excelant_3_10_FINAL.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/course.project.iml" afterPath="$PROJECT_DIR$/course.project.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/course.project/fxml/AdminWindow.fxml" afterPath="$PROJECT_DIR$/out/production/course.project/fxml/AdminWindow.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/course.project/fxml/Login.fxml" afterPath="$PROJECT_DIR$/out/production/course.project/fxml/Login.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/course.project/fxml/MainWindow.fxml" afterPath="$PROJECT_DIR$/out/production/course.project/fxml/MainWindow.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/course.project/user.hbm.xml" afterPath="$PROJECT_DIR$/out/production/course.project/user.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/client.hbm.xml" afterPath="$PROJECT_DIR$/src/client.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/coming_product.hbm.xml" afterPath="$PROJECT_DIR$/src/coming_product.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/AdminWindowController.java" afterPath="$PROJECT_DIR$/src/controllers/AdminWindowController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/CFactory.java" afterPath="$PROJECT_DIR$/src/controllers/CFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/DialogForComingProductController.java" afterPath="$PROJECT_DIR$/src/controllers/DialogForComingProductController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/DialogForSoldProductController.java" afterPath="$PROJECT_DIR$/src/controllers/DialogForSoldProductController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/LoginController.java" afterPath="$PROJECT_DIR$/src/controllers/LoginController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/MainWindowController.java" afterPath="$PROJECT_DIR$/src/controllers/MainWindowController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/department.hbm.xml" afterPath="$PROJECT_DIR$/src/department.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fxml/AdminWindow.fxml" afterPath="$PROJECT_DIR$/src/fxml/AdminWindow.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fxml/DialogForComingProduct.fxml" afterPath="$PROJECT_DIR$/src/fxml/DialogForComingProduct.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fxml/DialogForSoldProduct.fxml" afterPath="$PROJECT_DIR$/src/fxml/DialogForSoldProduct.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fxml/Login.fxml" afterPath="$PROJECT_DIR$/src/fxml/Login.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fxml/MainWindow.fxml" afterPath="$PROJECT_DIR$/src/fxml/MainWindow.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/impls/LoginImplDB.java" afterPath="$PROJECT_DIR$/src/impls/LoginImplDB.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/impls/UserDaoImplDB.java" afterPath="$PROJECT_DIR$/src/impls/UserDaoImplDB.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfaces/AdminForm.java" afterPath="$PROJECT_DIR$/src/interfaces/AdminForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfaces/ClientDao.java" afterPath="$PROJECT_DIR$/src/interfaces/ClientDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfaces/ComingProductDao.java" afterPath="$PROJECT_DIR$/src/interfaces/ComingProductDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfaces/DepartmentDao.java" afterPath="$PROJECT_DIR$/src/interfaces/DepartmentDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfaces/Login.java" afterPath="$PROJECT_DIR$/src/interfaces/Login.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfaces/ProductDao.java" afterPath="$PROJECT_DIR$/src/interfaces/ProductDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfaces/SoldProductDao.java" afterPath="$PROJECT_DIR$/src/interfaces/SoldProductDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfaces/UserDao.java" afterPath="$PROJECT_DIR$/src/interfaces/UserDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/objects/Status.java" afterPath="$PROJECT_DIR$/src/objects/Status.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/objects/User.java" afterPath="$PROJECT_DIR$/src/objects/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/product.hbm.xml" afterPath="$PROJECT_DIR$/src/product.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sold_product.hbm.xml" afterPath="$PROJECT_DIR$/src/sold_product.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/user.hbm.xml" afterPath="$PROJECT_DIR$/src/user.hbm.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util/MyUtils.java" afterPath="$PROJECT_DIR$/src/util/MyUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tmp.txt" afterPath="$PROJECT_DIR$/tmp.txt" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,6 +59,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/course_project$MyMain.coverage" NAME="MyMain Coverage Results" MODIFIED="1493325154456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
@@ -173,12 +172,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MyMain.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/MyMain.java">
+      <file leaf-file-name="MyUtils.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/util/MyUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="170">
+              <caret line="54" column="17" lean-forward="true" selection-start-line="54" selection-start-column="17" selection-end-line="54" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -200,6 +201,7 @@
     <findStrings>
       <find>init</find>
       <find>seti</find>
+      <find>poi</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -212,6 +214,19 @@
     <option name="PUSH_TAGS">
       <GitPushTagMode />
     </option>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -221,7 +236,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="C:/Program Files/Java/jdk1.8.0_152/jre/lib/rt.jar!/java/lang/Object.class" />
         <option value="$PROJECT_DIR$/src/entity/UserEntiry.java" />
         <option value="$PROJECT_DIR$/src/entity/UserEntity.java" />
         <option value="$PROJECT_DIR$/src/source/Status.java" />
@@ -256,12 +270,10 @@
         <option value="$PROJECT_DIR$/src/interfaces/ComingProductDao.java" />
         <option value="$PROJECT_DIR$/src/hibernate.cfg.xml" />
         <option value="$PROJECT_DIR$/src/fxml/MainWindow.fxml" />
-        <option value="$PROJECT_DIR$/src/MyMain.java" />
         <option value="$PROJECT_DIR$/src/client.hbm.xml" />
         <option value="$PROJECT_DIR$/src/department.hbm.xml" />
         <option value="$PROJECT_DIR$/src/product.hbm.xml" />
         <option value="$PROJECT_DIR$/src/user.hbm.xml" />
-        <option value="$PROJECT_DIR$/src/util/MyUtils.java" />
         <option value="$PROJECT_DIR$/src/objects/SoldProduct.java" />
         <option value="$PROJECT_DIR$/src/sold_product.hbm.xml" />
         <option value="$PROJECT_DIR$/src/coming_product.hbm.xml" />
@@ -272,6 +284,9 @@
         <option value="$PROJECT_DIR$/src/fxml/DialogForComingProduct.fxml" />
         <option value="$PROJECT_DIR$/src/controllers/DialogForComingProductController.java" />
         <option value="$PROJECT_DIR$/src/controllers/MainWindowController.java" />
+        <option value="$PROJECT_DIR$/src/MyMain.java" />
+        <option value="$PROJECT_DIR$/course.project.iml" />
+        <option value="$PROJECT_DIR$/src/util/MyUtils.java" />
       </list>
     </option>
   </component>
@@ -373,8 +388,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="course.project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -384,10 +399,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="course.project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -469,12 +480,16 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/objects/SoldProduct.java" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/poi-3.5-FINAL.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="SQL Server (Microsoft)&#10;PostgreSQL" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/objects/SoldProduct.java" />
+    <property name="findjar.last.used.dir" value="$PROJECT_DIR$/lib" />
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
@@ -531,6 +546,12 @@
     <configuration default="false" name="postgresql-9.4.1212.jre6.jar" type="JarApplication" factoryName="JAR Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="JAR_PATH" value="$PROJECT_DIR$/lib/postgresql-9.4.1212.jre6.jar" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="poi-3.5-FINAL.jar" type="JarApplication" factoryName="JAR Application" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="JAR_PATH" value="$PROJECT_DIR$/lib/poi-3.5-FINAL.jar" />
       <envs />
       <method />
     </configuration>
@@ -929,15 +950,17 @@
       <envs />
       <method />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="JAR Application.postgresql-9.4-1202.jdbc4.jar" />
       <item index="1" class="java.lang.String" itemvalue="Application.MyMain" />
       <item index="2" class="java.lang.String" itemvalue="JAR Application.postgresql-9.4.1212.jre6.jar" />
+      <item index="3" class="java.lang.String" itemvalue="JAR Application.poi-3.5-FINAL.jar" />
     </list>
     <recent_temporary>
-      <list size="2">
+      <list size="3">
         <item index="0" class="java.lang.String" itemvalue="Application.MyMain" />
-        <item index="1" class="java.lang.String" itemvalue="JAR Application.postgresql-9.4.1212.jre6.jar" />
+        <item index="1" class="java.lang.String" itemvalue="JAR Application.poi-3.5-FINAL.jar" />
+        <item index="2" class="java.lang.String" itemvalue="JAR Application.postgresql-9.4.1212.jre6.jar" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -1062,11 +1085,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493326548567</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="add deleting og coming product">
+      <created>1494010378098</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1494010378098</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107599000" />
+    <option name="totallyTimeSpent" value="109110000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1094,7 +1124,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39905363" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3267974" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267974" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
@@ -1230,20 +1260,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/interfaces/AdminForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/HibernateUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/interfaces/DepartmentDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1426,16 +1442,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/MyUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sold_product.hbm.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1588,16 +1594,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controllers/DialogForComingProductController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="42" column="57" lean-forward="false" selection-start-line="42" selection-start-column="57" selection-end-line="42" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_152/javafx-src.zip!/javafx/event/EventHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
@@ -1637,11 +1633,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/DialogForComingProductController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/course.project.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="39" column="17" lean-forward="false" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MyMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="153">
+          <caret line="15" column="62" lean-forward="false" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/MyUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="54" column="17" lean-forward="true" selection-start-line="54" selection-start-column="17" selection-end-line="54" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1705,6 +1737,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
@@ -1712,7 +1745,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>postgresql-9.4-1202.jdbc4</last-edited>
+          <last-edited>org.apache.poi:poi-excelant:3.10-FINAL</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
