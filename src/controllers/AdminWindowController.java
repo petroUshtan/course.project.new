@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import objects.Status;
 import objects.User;
+import util.MyUtils;
 
 import java.sql.SQLException;
 
@@ -35,7 +36,7 @@ public class AdminWindowController {
     @FXML
     ComboBox<String> cbStatus;
 
-    UserDao userDao = new UserDaoImplDB();
+    UserDao userDao = new CFactory().getUserDao();
     ObservableList<User> observableList ;
     ObservableList<String> observableListStatus ;
     @FXML
@@ -65,9 +66,13 @@ public class AdminWindowController {
                         // clicking on text part
                         row = (TableRow) node.getParent();
                     }
-                    tfUsername.setText(((User)row.getItem()).getUsername());
-                    tfPassword.setText(((User)row.getItem()).getPassword());
-                    cbStatus.setItems(observableListStatus);
+                    try{
+                        tfUsername.setText(((User)row.getItem()).getUsername());
+                        tfPassword.setText(((User)row.getItem()).getPassword());
+                        cbStatus.setItems(observableListStatus);
+                    }catch (NullPointerException e){
+                        MyUtils.AlertError("Помилка","Виберіть рядок!");
+                    }
                 }
             }
         });
@@ -97,12 +102,11 @@ public class AdminWindowController {
         try {
             if((isUnic())&&(!tfUsername.getText().equals(""))&&(!tfPassword.getText().equals(""))){
                 userDao.addUser(new User(tfUsername.getText(),tfPassword.getText(),cbStatus.getSelectionModel().getSelectedItem()));
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(cbStatus.getSelectionModel().getSelectedItem());
+         System.out.println(tfUsername.getText()+tfPassword.getText()+cbStatus.getSelectionModel().getSelectedItem());
         update();
     }
 

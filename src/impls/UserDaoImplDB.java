@@ -20,7 +20,7 @@ public class UserDaoImplDB implements interfaces.UserDao {
             session.save(user);
             session.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {
             if ((session != null) && (session.isOpen())) session.close();
         }
@@ -35,7 +35,7 @@ public class UserDaoImplDB implements interfaces.UserDao {
             session.delete(user);
             session.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {
             if ((session != null) && (session.isOpen())) session.close();
         }
@@ -47,9 +47,9 @@ public class UserDaoImplDB implements interfaces.UserDao {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            result = (User)session.load(User.class, id);
+            result = session.load(User.class, id);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {
             if ((session != null) && (session.isOpen())) session.close();
         }
@@ -65,7 +65,7 @@ public class UserDaoImplDB implements interfaces.UserDao {
             session = HibernateUtil.getSessionFactory().openSession();
             users = session.createCriteria(User.class).list();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {
             if ((session != null) && (session.isOpen())) session.close();
         }

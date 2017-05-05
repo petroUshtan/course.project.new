@@ -15,7 +15,7 @@ public class CFactory {
     private DepartmentDao departmentDao;
     private ProductDao productDao;
 
-    private CFactory() {
+    public CFactory() {
     }
 
     public static CFactory getInstance() {

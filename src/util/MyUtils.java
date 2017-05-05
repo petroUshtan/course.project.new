@@ -1,5 +1,7 @@
 package util;
 
+import javafx.scene.control.Alert;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -18,5 +20,15 @@ public class MyUtils {
 
     public static Long setUniqueId(){
         return System.currentTimeMillis();
+    }
+
+    public static void AlertError(String title,String message){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        alert.showAndWait();
     }
 }

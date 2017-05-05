@@ -195,13 +195,42 @@ public class MainWindowController {
         }
     }
 
-    public void onMbDeleteSoldProduct(ActionEvent actionEvent) {
-
+    public void onMbDeleteSoldProduct(ActionEvent actionEvent) throws SQLException, FileNotFoundException {
+         deleteSoldProduct((SoldProduct)soldProductTableView.getSelectionModel().getSelectedItem(),
+                 CFactory.getInstance().getSoldProductDao());
     }
 
-    public void onMbDeleteCommingProduct(ActionEvent actionEvent) {
-
+    public void onMbDeleteCommingProduct(ActionEvent actionEvent) throws FileNotFoundException {
+        deleteComingProduct((ComingProduct) comingProductTableView.getSelectionModel().getSelectedItem(),
+                CFactory.getInstance().getComingProductDao());
     }
 
+    private void deleteSoldProduct(SoldProduct soldProduct,SoldProductDao soldProductDao) throws FileNotFoundException {
+
+        try {
+            if(soldProduct!=null){
+                soldProductDao.deleteSoldProduct(soldProduct);
+            }else {
+                MyUtils.AlertError("Помилка видалення", "Виберіть запис!");
+            }
+            fillForUser();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void deleteComingProduct(ComingProduct comingProduct,ComingProductDao comingProductDao) throws FileNotFoundException {
+
+        try {
+            if(comingProduct!=null){
+                comingProductDao.deleteComingProduct(comingProduct);
+            }else {
+                MyUtils.AlertError("Помилка видалення", "Виберіть запис!");
+            }
+            fillForUser();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

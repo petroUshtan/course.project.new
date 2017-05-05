@@ -1,5 +1,7 @@
 package objects;
 
+import util.MyUtils;
+
 /**
  * Created by Work on 12.04.2017.
  */
@@ -15,21 +17,19 @@ public class User {
     private Long id;
 
     public User(String username, String password, String status) {
+        this.id = MyUtils.setUniqueId();
         this.username = username;
         this.password = password;
         this.status = status;
     }
 
     public User() {
+        this.id = MyUtils.setUniqueId();
         this.username = "username";
         this.password = "password";
         this.status = "USER";
     }
 
-    long generateId(){
-        return System.currentTimeMillis();
-    }
-    
     public String getUsername() {
         return username;
     }

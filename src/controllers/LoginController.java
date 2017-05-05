@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import objects.Status;
@@ -26,17 +27,21 @@ public class LoginController {
     TextField tfUsername;
     @FXML
     TextField tfPassword;
+    @FXML
+    Label lbLoginError;
 
+    final String LOGIN_ERROR = "Дана комбінація логіну і паролю не знайдена";
 
     public void onSingin() {
         Parent rootNode = null;
+        lbLoginError.setText("");
         try {
             Login lg = new LoginImplDB();
             if(lg.verify(tfUsername.getText(),tfPassword.getText())){
                writeInTmpFile(tfUsername.getText(),lg.getStatusOfUser(tfUsername.getText(),tfPassword.getText()));
                if((lg.getStatusOfUser(tfUsername.getText(),tfPassword.getText())).equals(Status.getADMIN())){
                    rootNode = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/AdminWindow.fxml"));
-//                   Session session= HibernateUtil.getSessionFactory().openSession();
+
 
                }else if((lg.getStatusOfUser(tfUsername.getText(),tfPassword.getText())).equals(Status.getUSER())){
                    rootNode = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainWindow.fxml"));
@@ -49,7 +54,9 @@ public class LoginController {
                mainStage.setScene(scene);
                mainStage.setTitle("АРМ працівника складу");
                mainStage.show();
-           }
+           }else{
+                lbLoginError.setText(LOGIN_ERROR);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

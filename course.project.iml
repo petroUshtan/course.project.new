@@ -4,7 +4,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="hibernate.cfg.xml" value="5a4ce4e3-4bfd-4fc8-9601-ce2e5a10ed1f" />
+          <unit-entry name="hibernate.cfg.xml" value="1edf9344-3a09-4ded-9e57-c61e3507e00e" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/hibernate.cfg.xml" />
@@ -16,7 +16,7 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="Hibernate 5.2.9-5.2.9" level="project" />
     <orderEntry type="module-library" exported="">
@@ -28,6 +28,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="postgresql-9.4-1202.jdbc4" level="project" />
+    <orderEntry type="library" exported="" name="postgresql-9.4-1202.jdbc4" level="project" />
   </component>
 </module>
