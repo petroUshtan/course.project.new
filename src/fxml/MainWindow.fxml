@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -13,47 +18,53 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="440.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
+<AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="440.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" layoutX="179.0" layoutY="35.0" prefHeight="245.0" prefWidth="373.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
-        <items>
-          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="250.0" minHeight="0.0" minWidth="100.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <ListView fx:id="usersListView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="317.0" prefWidth="294.0">
-               <children>
-                  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <tabs>
-                      <Tab text="Продати">
-                           <content>
-                              <TableView fx:id="soldProductTableView" prefHeight="243.0" prefWidth="207.0" />
-                           </content>
-                        </Tab>
-                      <Tab text="Прийняти">
-                           <content>
-                              <TableView fx:id="comingProductTableView" prefHeight="200.0" prefWidth="200.0" />
-                           </content>
-                        </Tab>
-                        <Tab text="Статистика">
-                           <content>
-                              <BarChart fx:id="barChartStatistic">
-                                <xAxis>
-                                  <CategoryAxis side="BOTTOM" />
-                                </xAxis>
-                                <yAxis>
-                                  <NumberAxis fx:id="barChartStatictic" side="LEFT" />
-                                </yAxis>
-                              </BarChart>
-                           </content>
-                        </Tab>
-                    </tabs>
-                  </TabPane>
-               </children></AnchorPane>
-        </items>
-      </SplitPane>
-      <MenuBar maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+         <children>
+            <Label text="Дані по користувачу" />
+            <ComboBox fx:id="cbCurrentUser" prefWidth="150.0" />
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="317.0" prefWidth="294.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <tabs>
+                <Tab text="Продати">
+                     <content>
+                        <TableView fx:id="soldProductTableView" prefHeight="243.0" prefWidth="207.0" />
+                     </content>
+                  </Tab>
+                <Tab text="Прийняти">
+                     <content>
+                        <TableView fx:id="comingProductTableView" prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+                  <Tab text="Відділи">
+                     <content>
+                        <TableView fx:id="departmentProductTableView" prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+                  <Tab text="Статистика">
+                     <content>
+                        <BarChart fx:id="barChartStatistic">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="barChartStatictic" side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+      <MenuBar layoutY="2.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="Файл">
             <items>
@@ -65,8 +76,14 @@
             <items>
               <MenuItem fx:id="mbAddSoldProduct" mnemonicParsing="false" onAction="#onMbAddSoldProduct" text="Додати проданий" />
                   <MenuItem fx:id="mbAddComingProduct" mnemonicParsing="false" onAction="#onMbAddComingProduct" text="Додати отриманий" />
+                  <MenuItem fx:id="mbAddProduct" mnemonicParsing="false" onAction="#onMbAddProduct" text="Додати продукт" />
+                  <MenuItem fx:id="mbAddProvider" mnemonicParsing="false" onAction="#onMbAddProvider" text="Додати постачальника" />
+                  <MenuItem fx:id="mbAddDepartment" mnemonicParsing="false" onAction="#onMbAddDepartment" text="Додати відділ" />
                   <MenuItem fx:id="mbDeleteSoldProduct" mnemonicParsing="false" onAction="#onMbDeleteSoldProduct" text="Видалити проданий" />
                   <MenuItem fx:id="mbDeleteComing" mnemonicParsing="false" onAction="#onMbDeleteCommingProduct" text="Видалити отриманий" />
+                  <MenuItem fx:id="mbDeleteProduct" mnemonicParsing="false" onAction="#onMbDeleteProduct" text="Видалити продукт" />
+                  <MenuItem fx:id="mbDeleteProvider" mnemonicParsing="false" onAction="#onMbDeleteProvider" text="Видалити постачальника" />
+                  <MenuItem fx:id="mbDeleteDepartment" mnemonicParsing="false" onAction="#onMbDeleteDepartment" text="Видалити відділ" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Довідка">

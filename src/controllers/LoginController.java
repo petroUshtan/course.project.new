@@ -43,7 +43,7 @@ public class LoginController {
                    rootNode = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/AdminWindow.fxml"));
 
 
-               }else if((lg.getStatusOfUser(tfUsername.getText(),tfPassword.getText())).equals(Status.getUSER())){
+               }else {
                    rootNode = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainWindow.fxml"));
                }
                Stage stage = (Stage) singinButton.getScene().getWindow();

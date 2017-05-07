@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="211.0" prefWidth="327.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DialogForAddingProductController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_RIGHT" layoutX="30.0" layoutY="30.0" prefHeight="34.0" prefWidth="406.0" spacing="10.0">
+               <children>
+                  <Label text="Назва" />
+                  <TextField fx:id="tfComingProductName" prefHeight="25.0" prefWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="30.0" layoutY="64.0" prefHeight="34.0" prefWidth="406.0" spacing="10.0">
+               <children>
+                  <Label text="Постачальник" />
+                  <TextField fx:id="tfComingProductClient" prefHeight="25.0" prefWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="30.0" layoutY="98.0" prefHeight="34.0" prefWidth="406.0" spacing="10.0">
+               <children>
+                  <Label text="Кількість" />
+                  <TextField fx:id="tfComingProductNumber" prefHeight="25.0" prefWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="30.0" layoutY="132.0" prefHeight="34.0" prefWidth="406.0" spacing="10.0">
+               <children>
+                  <Label text="Ціна" />
+                  <TextField fx:id="tfComingProductPrice" prefHeight="25.0" prefWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="30.0" layoutY="132.0" prefHeight="34.0" prefWidth="406.0" spacing="10.0">
+               <children>
+                  <Label text="Відділ" />
+                  <TextField fx:id="tfComingProductDepartment" prefHeight="25.0" prefWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_CENTER" layoutX="30.0" layoutY="370.0" prefHeight="34.0" prefWidth="406.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onOK" prefWidth="80.0" text="OK" />
+                  <Button mnemonicParsing="false" onAction="#onCancel" prefWidth="80.0" text="Скасувати" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

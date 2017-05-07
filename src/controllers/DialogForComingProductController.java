@@ -38,7 +38,6 @@ public class DialogForComingProductController {
         ComingProduct comingProduct = new ComingProduct(tfComingProductName.getText(),
                 MyUtils.readTmpFile()[0].trim(),tfComingProductClient.getText(),Double.parseDouble(tfComingProductNumber.getText()),
                 Double.parseDouble(tfComingProductPrice.getText()),dateTime );
-
         productDao.addProduct(product);
         comingProductDao.addComingProduct(comingProduct);
     }

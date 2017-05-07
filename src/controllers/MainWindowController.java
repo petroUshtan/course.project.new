@@ -1,6 +1,7 @@
 package controllers;
 
 import interfaces.ComingProductDao;
+import interfaces.DepartmentDao;
 import interfaces.SoldProductDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,7 +18,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import objects.ComingProduct;
+import objects.Department;
 import objects.SoldProduct;
+import objects.Status;
 import util.MyUtils;
 
 import java.io.FileNotFoundException;
@@ -30,11 +33,13 @@ import java.util.List;
  */
 public class MainWindowController {
     @FXML
-    ListView<String> usersListView;
+    ComboBox<String> cbCurrentUser;
     @FXML
     TableView soldProductTableView;
     @FXML
     TableView comingProductTableView;
+    @FXML
+    TableView departmentProductTableView;
 
     TableColumn<SoldProduct,String> tcsoldProductId=new TableColumn<>();
     TableColumn<SoldProduct,String> tcSoldProductName=new TableColumn<>();
@@ -52,11 +57,17 @@ public class MainWindowController {
     TableColumn<ComingProduct,String> tcComingProductPrice=new TableColumn<>();
     TableColumn<ComingProduct,String> tcComingDateTime=new TableColumn<>();
 
-
+    TableColumn<Department,String> tcDepartmentId=new TableColumn<>();
+    TableColumn<Department,String> tcDepartmentName=new TableColumn<>();
+    TableColumn<Department,String> tcDepartmentAddress=new TableColumn<>();
 
     @FXML
-    void initialize() throws FileNotFoundException {
-            fillForUser();
+    void initialize() throws FileNotFoundException, SQLException {
+            if(MyUtils.readTmpFile()[1].trim().equals(Status.getUSER())){
+                fillForUser();
+            }else if (MyUtils.readTmpFile()[1].trim().equals(Status.getMANAGER())){
+                fillForManager();
+            }
     }
 
     void fillComingProductTable(List<ComingProduct> comingProducts){
@@ -114,9 +125,26 @@ public class MainWindowController {
         soldProductTableView.getColumns().addAll(tcsoldProductId,
                 tcSoldProductName,tcSoldUserName,tcSoldClientName,tcSoldProductNumber,tcSoldProductPrice,tcSoldDateTime);
         soldProductTableView.setItems(observableList);
-//        tcUsername.setCellValueFactory(new PropertyValueFactory<SoldProduct,String>("password"));
-//        tcStatus.setCellValueFactory(new PropertyValueFactory<SoldProduct, String>("status"));
-//        tvUserList.setItems(observableList);
+
+    }
+
+    void fillDepartmentTable(List<Department> departments){
+        ObservableList<Department> observableList = null;
+        observableList= FXCollections.observableArrayList(departments);
+
+        tcDepartmentId.setCellValueFactory(new PropertyValueFactory<Department,String>("departmentId"));
+        tcDepartmentId.setText("ID");
+        tcDepartmentName.setCellValueFactory(new PropertyValueFactory<Department,String>("departmentName"));
+        tcDepartmentName.setText("Назва відділу");
+        tcDepartmentAddress.setCellValueFactory(new PropertyValueFactory<Department,String>("departmentAddress"));
+        tcDepartmentAddress.setText("Адреса");
+
+        if(!soldProductTableView.getColumns().isEmpty()){
+            soldProductTableView.getColumns().clear();
+        }
+        departmentProductTableView.getColumns().addAll(tcDepartmentId,
+                tcDepartmentName,tcDepartmentAddress);
+        departmentProductTableView.setItems(observableList);
 
     }
 
@@ -126,6 +154,8 @@ public class MainWindowController {
         String[] strings = MyUtils.readTmpFile();
         List<ComingProduct> comingProducts = null;
         List<SoldProduct> soldProducts = null;
+        cbCurrentUser.getItems().add(strings[0]);
+        cbCurrentUser.getSelectionModel().selectFirst();
         try{
             soldProducts = soldProductDao.getSoldProducts(strings[0].trim());
             comingProducts = comingProductDao.getComingProducts(strings[0].trim());
@@ -137,8 +167,9 @@ public class MainWindowController {
     }
 
 
-    private void fillForManager(){
-
+    private void fillForManager() throws SQLException {
+        DepartmentDao departmentDao = CFactory.getInstance().getDepartmentDao();
+        fillDepartmentTable(departmentDao.getDepartment());
     }
 
     public void onExcelReport(ActionEvent actionEvent) {
@@ -233,4 +264,33 @@ public class MainWindowController {
         }
     }
 
+    private void createSampleByDay(){
+
+    }
+    private void createSampleByMonth(){
+
+    }
+    private void createSampleByYear(){
+
+    }
+
+    public void onMbAddProduct(ActionEvent actionEvent) {
+
+    }
+
+    public void onMbAddProvider(ActionEvent actionEvent) {
+    }
+
+    public void onMbAddDepartment(ActionEvent actionEvent) {
+    }
+
+    public void onMbDeleteProduct(ActionEvent actionEvent) {
+    }
+
+    public void onMbDeleteProvider(ActionEvent actionEvent) {
+    }
+
+    public void onMbDeleteDepartment(ActionEvent actionEvent) {
+
+    }
 }
