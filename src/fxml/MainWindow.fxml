@@ -23,7 +23,7 @@
       <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
          <children>
             <Label text="Дані по користувачу" />
-            <ComboBox fx:id="cbCurrentUser" prefWidth="150.0" />
+            <ComboBox fx:id="cbCurrentUser" onAction="#onUpdateData" prefWidth="150.0" />
          </children>
          <padding>
             <Insets left="10.0" />

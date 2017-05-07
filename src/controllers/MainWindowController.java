@@ -10,6 +10,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -17,15 +21,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import objects.ComingProduct;
-import objects.Department;
-import objects.SoldProduct;
-import objects.Status;
+import objects.*;
 import util.MyUtils;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,6 +42,8 @@ public class MainWindowController {
     TableView comingProductTableView;
     @FXML
     TableView departmentProductTableView;
+    @FXML
+    BarChart<String,Number> barChartStatistic;
 
     TableColumn<SoldProduct,String> tcsoldProductId=new TableColumn<>();
     TableColumn<SoldProduct,String> tcSoldProductName=new TableColumn<>();
@@ -64,8 +68,14 @@ public class MainWindowController {
     @FXML
     void initialize() throws FileNotFoundException, SQLException {
             if(MyUtils.readTmpFile()[1].trim().equals(Status.getUSER())){
+                cbCurrentUser.getItems().add(MyUtils.readTmpFile()[0]);
+                cbCurrentUser.getSelectionModel().selectFirst();
                 fillForUser();
             }else if (MyUtils.readTmpFile()[1].trim().equals(Status.getMANAGER())){
+                if(cbCurrentUser.getSelectionModel().isEmpty()){
+                    cbCurrentUser.getItems().addAll(MyUtils.getUsersFromDB());
+                    cbCurrentUser.getSelectionModel().selectFirst();
+                }
                 fillForManager();
             }
     }
@@ -154,8 +164,6 @@ public class MainWindowController {
         String[] strings = MyUtils.readTmpFile();
         List<ComingProduct> comingProducts = null;
         List<SoldProduct> soldProducts = null;
-        cbCurrentUser.getItems().add(strings[0]);
-        cbCurrentUser.getSelectionModel().selectFirst();
         try{
             soldProducts = soldProductDao.getSoldProducts(strings[0].trim());
             comingProducts = comingProductDao.getComingProducts(strings[0].trim());
@@ -165,7 +173,6 @@ public class MainWindowController {
             e.printStackTrace();
         }
     }
-
 
     private void fillForManager() throws SQLException {
         DepartmentDao departmentDao = CFactory.getInstance().getDepartmentDao();
@@ -293,4 +300,40 @@ public class MainWindowController {
     public void onMbDeleteDepartment(ActionEvent actionEvent) {
 
     }
+
+    public void onUpdateData(ActionEvent actionEvent) throws IOException, SQLException {
+        MyUtils.writeTmpFile(cbCurrentUser.getSelectionModel().getSelectedItem(),"USER");
+        fillForUser();
+        createBarChart();
+
+    }
+
+    private void createBarChart() throws FileNotFoundException, SQLException {
+        ArrayList<String> usersForChart=new ArrayList<String>();
+        usersForChart.add(MyUtils.readTmpFile()[0].trim());
+        DataForChart dataForChart = MyUtils.prepareDataForChart(usersForChart);
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        barChartStatistic.setTitle(dataForChart.getChartTitle());
+        xAxis.setLabel(dataForChart.getxLabel());
+        yAxis.setLabel(dataForChart.getyLabel());
+
+        ArrayList<XYChart.Series> series = new ArrayList<XYChart.Series>();
+        int num = 0;
+        for (String seriaTitle : dataForChart.getSeriaTitles())   {
+            XYChart.Series ser = new XYChart.Series();
+            ser.setName(seriaTitle);
+            ArrayList<Double> arrayList = new ArrayList<Double>();
+            arrayList= dataForChart.getSeriaValues().get(num);
+            num++;
+            int numOfData =0;
+            for (String title : dataForChart.getDataTitles()){
+                ser.getData().add(new XYChart.Data(title,arrayList.get(numOfData) ));
+                numOfData++;
+            }
+            barChartStatistic.getData().add(ser);
+        }
+
+    }
+
 }

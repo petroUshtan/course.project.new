@@ -14,9 +14,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import objects.Status;
+import util.MyUtils;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 
@@ -38,7 +37,7 @@ public class LoginController {
         try {
             Login lg = new LoginImplDB();
             if(lg.verify(tfUsername.getText(),tfPassword.getText())){
-               writeInTmpFile(tfUsername.getText(),lg.getStatusOfUser(tfUsername.getText(),tfPassword.getText()));
+               MyUtils.writeTmpFile(tfUsername.getText(),lg.getStatusOfUser(tfUsername.getText(),tfPassword.getText()));
                if((lg.getStatusOfUser(tfUsername.getText(),tfPassword.getText())).equals(Status.getADMIN())){
                    rootNode = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/AdminWindow.fxml"));
 
@@ -69,10 +68,6 @@ public class LoginController {
         DepartmentDao departmentDao = cFactory.getDepartmentDao();
     }
 
-    private void writeInTmpFile(String userName, String status) throws IOException {
-        try(  PrintWriter out = new PrintWriter( "tmp.txt" )  ){
-            out.println(userName+"         "+status);
-        }
-    }
+
 
 }
