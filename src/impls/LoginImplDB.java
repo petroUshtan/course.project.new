@@ -15,7 +15,7 @@ public class LoginImplDB implements Login {
     UserDao userDao = new UserDaoImplDB();
 
     @Override
-    public String getStatusOfUser(String username, String password){
+    public  String getStatusOfUser(String username, String password){
         String status="";
         try {
             List<User> users = userDao.getUser();

@@ -23,6 +23,7 @@ import java.util.Scanner;
  * Created by Work on 27.04.2017.
  */
 public class MyUtils {
+    public final static String ALL="Всіх";
     public static String[] readTmpFile() throws FileNotFoundException {
         String content = new Scanner(new File("tmp.txt")).useDelimiter("\\Z").next();
         String[] strings = content.split("         ");
@@ -88,30 +89,55 @@ public class MyUtils {
         for(User user : users){
             strings.add(user.getUsername());
         }
+        strings.add(ALL);
         return strings;
     }
 
-    public static DataForChart prepareDataForChart(ArrayList<String> seriaTitles) throws FileNotFoundException, SQLException {
+    public static ObservableList<String> getYearsFromDB() throws SQLException {
+        List<SoldProduct> soldProducts = CFactory.getInstance().getSoldProductDao().getSoldProducts();
+        ArrayList<String> tmpArray = new ArrayList<>();
+        for(SoldProduct soldProduct : soldProducts){
+            String tmp = Integer.toString(soldProduct.getDateTime().getYear());
+            if(isUniqInArray(tmpArray,tmp)){
+                tmpArray.add(tmp);
+            }
+        }
+        tmpArray.add(ALL);
+        return FXCollections.observableArrayList(tmpArray);
+    }
+
+    public static DataForChart prepareDataForChart(ArrayList<String> seriaTitles,Integer currentYear) throws FileNotFoundException, SQLException {
         DataForChart dataForChart = new DataForChart();
         dataForChart.setChartTitle("Статистика по користувачу: "+MyUtils.readTmpFile()[0].trim());
         dataForChart.setxLabel("Місяць");
         dataForChart.setyLabel("Виручка");
         dataForChart.setSeriaTitles(seriaTitles);
         List<SoldProduct> soldProducts = CFactory.getInstance().getSoldProductDao().getSoldProducts();
-        ArrayList<String> months = new ArrayList<String>();
+        ArrayList<Integer> monthsInt = new ArrayList<Integer>();
         ArrayList<ArrayList<Double>> dataValues = new ArrayList<ArrayList<Double>>() ;
         for(SoldProduct soldProduct : soldProducts){
-            String tmpValue = getMonthName(soldProduct.getDateTime().getMonth()).trim();
-            if(isUniqInArray(months,tmpValue)) {
-                months.add(tmpValue);
+            Integer tmpValue = new Integer(soldProduct.getDateTime().getMonth());
+            if((isUniqInArray(monthsInt,tmpValue))&&(soldProduct.getDateTime().getYear()==currentYear)) {
+                monthsInt.add(tmpValue);
             }
+        }
+        monthsInt.sort((o1, o2) -> {
+            return o1.compareTo(o2);
+        });
+
+        ArrayList<String> months = new ArrayList<String>();
+        for(Integer integer : monthsInt){
+            months.add(getMonthName(integer));
+            System.out.println(integer+" "+getMonthName(integer));
         }
         for(String seriaTitle : seriaTitles){
             ArrayList<Double> arrayList =new ArrayList<Double>();
-            Double tmp =new Double(0);
             for (String month : months){
+                Double tmp =new Double(0);
                 for (SoldProduct soldProduct : soldProducts){
-                    if(month.equals(getMonthName(soldProduct.getDateTime().getMonth()).trim()))  {
+                    if((month.equals(getMonthName(soldProduct.getDateTime().getMonth()).trim()))&&
+                            (seriaTitle.trim().equals(soldProduct.getUserName().trim()))&&
+                            (soldProduct.getDateTime().getYear()==currentYear))  {
                         tmp+=soldProduct.getSoldProductNumber()*soldProduct.getSoldProductPrice();
                     }
                 }
@@ -134,6 +160,22 @@ public class MyUtils {
     }
 
     public static String getMonthName(Integer month) {
-        return new DateFormatSymbols().getMonths()[month-1];
+        return new DateFormatSymbols().getMonths()[month];
+    }
+
+
+    public static String getStatusOfUser(String username){
+        String status="";
+        try {
+            List<User> users = CFactory.getInstance().getUserDao().getUser();
+            for (User u : users){
+                if((u.getUsername().equals(username))){
+                    return u.getStatus();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return status;
     }
 }

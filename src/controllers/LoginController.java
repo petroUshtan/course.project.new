@@ -1,22 +1,21 @@
 package controllers;
 
 import impls.LoginImplDB;
-import interfaces.ClientDao;
-import interfaces.DepartmentDao;
 import interfaces.Login;
-import interfaces.ProductDao;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import objects.Status;
 import util.MyUtils;
-
-import java.sql.SQLException;
 
 
 public class LoginController {
@@ -52,6 +51,11 @@ public class LoginController {
                Scene scene = new Scene(rootNode);
                mainStage.setScene(scene);
                mainStage.setTitle("АРМ працівника складу");
+               mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                    public void handle(WindowEvent we) {
+                        System.exit(0);
+                    }
+                });
                mainStage.show();
            }else{
                 lbLoginError.setText(LOGIN_ERROR);
@@ -61,13 +65,9 @@ public class LoginController {
         }
     }
 
-    public void onCancel() throws SQLException {
-        CFactory cFactory = CFactory.getInstance();
-        ClientDao clientDao= cFactory.getClientDao();
-        ProductDao productDao = cFactory.getProductDao();
-        DepartmentDao departmentDao = cFactory.getDepartmentDao();
+    public void onCancel(ActionEvent actionEvent) {
+        Node source = (Node)  actionEvent.getSource();
+        Stage stage  = (Stage) source.getScene().getWindow();
+        stage.close();
     }
-
-
-
 }

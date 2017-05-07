@@ -37,6 +37,8 @@ public class MainWindowController {
     @FXML
     ComboBox<String> cbCurrentUser;
     @FXML
+    ComboBox<String> cbCurrentYear;
+    @FXML
     TableView soldProductTableView;
     @FXML
     TableView comingProductTableView;
@@ -70,11 +72,15 @@ public class MainWindowController {
             if(MyUtils.readTmpFile()[1].trim().equals(Status.getUSER())){
                 cbCurrentUser.getItems().add(MyUtils.readTmpFile()[0]);
                 cbCurrentUser.getSelectionModel().selectFirst();
+                cbCurrentYear.getItems().addAll(MyUtils.getYearsFromDB());
+                cbCurrentYear.getSelectionModel().selectFirst();
                 fillForUser();
             }else if (MyUtils.readTmpFile()[1].trim().equals(Status.getMANAGER())){
                 if(cbCurrentUser.getSelectionModel().isEmpty()){
                     cbCurrentUser.getItems().addAll(MyUtils.getUsersFromDB());
                     cbCurrentUser.getSelectionModel().selectFirst();
+                    cbCurrentYear.getItems().addAll(MyUtils.getYearsFromDB());
+                    cbCurrentYear.getSelectionModel().selectFirst();
                 }
                 fillForManager();
             }
@@ -164,13 +170,24 @@ public class MainWindowController {
         String[] strings = MyUtils.readTmpFile();
         List<ComingProduct> comingProducts = null;
         List<SoldProduct> soldProducts = null;
-        try{
-            soldProducts = soldProductDao.getSoldProducts(strings[0].trim());
-            comingProducts = comingProductDao.getComingProducts(strings[0].trim());
-            fillSoldProductTable(soldProducts);
-            fillComingProductTable(comingProducts);
-        }catch (SQLException e){
-            e.printStackTrace();
+        if(strings[0].trim().equals(MyUtils.ALL)){
+            try{
+                soldProducts = soldProductDao.getSoldProducts();
+                comingProducts = comingProductDao.getComingProducts();
+                fillSoldProductTable(soldProducts);
+                fillComingProductTable(comingProducts);
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }else {
+            try{
+                soldProducts = soldProductDao.getSoldProducts(strings[0].trim());
+                comingProducts = comingProductDao.getComingProducts(strings[0].trim());
+                fillSoldProductTable(soldProducts);
+                fillComingProductTable(comingProducts);
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
         }
     }
 
@@ -302,16 +319,26 @@ public class MainWindowController {
     }
 
     public void onUpdateData(ActionEvent actionEvent) throws IOException, SQLException {
-        MyUtils.writeTmpFile(cbCurrentUser.getSelectionModel().getSelectedItem(),"USER");
+        MyUtils.writeTmpFile(cbCurrentUser.getSelectionModel().getSelectedItem(),
+                            MyUtils.getStatusOfUser(cbCurrentUser.getSelectionModel().getSelectedItem()));
         fillForUser();
         createBarChart();
 
     }
 
     private void createBarChart() throws FileNotFoundException, SQLException {
+        barChartStatistic.getData().clear();
         ArrayList<String> usersForChart=new ArrayList<String>();
-        usersForChart.add(MyUtils.readTmpFile()[0].trim());
-        DataForChart dataForChart = MyUtils.prepareDataForChart(usersForChart);
+        String currentChoice = MyUtils.readTmpFile()[0].trim();
+        if(currentChoice.trim().equals(MyUtils.ALL.trim())){
+            List<User> users = CFactory.getInstance().getUserDao().getUser();
+            for(User user : users){
+                usersForChart.add(user.getUsername());
+            }
+        }else {
+            usersForChart.add(currentChoice);
+        }
+        DataForChart dataForChart = MyUtils.prepareDataForChart(usersForChart,Integer.parseInt(cbCurrentYear.getSelectionModel().getSelectedItem().trim()));
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
         barChartStatistic.setTitle(dataForChart.getChartTitle());

@@ -24,6 +24,8 @@
          <children>
             <Label text="Дані по користувачу" />
             <ComboBox fx:id="cbCurrentUser" onAction="#onUpdateData" prefWidth="150.0" />
+            <Label layoutX="20.0" layoutY="14.0" text="Рік" />
+            <ComboBox fx:id="cbCurrentYear" layoutX="144.0" layoutY="10.0" onAction="#onUpdateData" prefHeight="25.0" prefWidth="88.0" />
          </children>
          <padding>
             <Insets left="10.0" />
