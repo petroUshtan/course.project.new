@@ -1,6 +1,5 @@
 package util;
 
-import controllers.CFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -112,7 +111,7 @@ public class MyUtils {
     }
 
     public static ObservableList<String> getUsersFromDB() throws SQLException {
-        ObservableList<User> users = FXCollections.observableArrayList( CFactory.getInstance().getUserDao().getUser());
+        ObservableList<User> users = FXCollections.observableArrayList(UtilForDBWorking.getRecords(new User()));
         ObservableList<String> strings = FXCollections.observableArrayList();
         for(User user : users){
             strings.add(user.getUsername());
@@ -123,7 +122,7 @@ public class MyUtils {
 
     public static ObservableList<String> getYearsFromDB() throws SQLException {
         SimpleDateFormat df = new SimpleDateFormat("yyyy");
-        List<SoldProduct> soldProducts = CFactory.getInstance().getSoldProductDao().getSoldProducts();
+        List<SoldProduct> soldProducts = UtilForDBWorking.getRecords(new SoldProduct());
         ArrayList<String> tmpArray = new ArrayList<>();
         for(SoldProduct soldProduct : soldProducts){
             String tmp = Integer.toString(Integer.parseInt(Integer.toString(Integer.parseInt(df.format(soldProduct.getDateTime()))).trim()));
@@ -142,7 +141,7 @@ public class MyUtils {
         dataForChart.setxLabel("Місяць");
         dataForChart.setyLabel("Виручка");
         dataForChart.setSeriaTitles(seriaTitles);
-        List<SoldProduct> soldProducts = CFactory.getInstance().getSoldProductDao().getSoldProducts();
+        List<SoldProduct> soldProducts = UtilForDBWorking.getRecords(new SoldProduct());
         ArrayList<Integer> monthsInt = new ArrayList<Integer>();
         ArrayList<ArrayList<Double>> dataValues = new ArrayList<ArrayList<Double>>() ;
         for(SoldProduct soldProduct : soldProducts){
@@ -199,7 +198,7 @@ public class MyUtils {
     public static String getStatusOfUser(String username){
         String status="";
         try {
-            List<User> users = CFactory.getInstance().getUserDao().getUser();
+            List<User> users = UtilForDBWorking.getRecords(new User());
             for (User u : users){
                 if((u.getUsername().equals(username))){
                     return u.getStatus();

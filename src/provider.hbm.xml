@@ -1,0 +1,14 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="objects.Provider" table="providers">
+        <id name="providerId" type="java.lang.Long" column="providerId">
+            <!--<generator class="native"></generator>-->
+        </id>
+        <property name="companyName" column="companyName" type="java.lang.String"/>
+        <property name="companyRepresentative" column="companyRepresentative" type="java.lang.String"/>
+        <property name="registerTimer" column="registerTime" type="java.util.Date"/>
+    </class>
+</hibernate-mapping>

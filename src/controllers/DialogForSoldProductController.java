@@ -1,15 +1,12 @@
 package controllers;
 
-import impls.ProductDaoImplDB;
-import impls.SoldProductDaoImplDB;
-import interfaces.ProductDao;
-import interfaces.SoldProductDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import objects.Product;
 import objects.SoldProduct;
 import util.MyUtils;
+import util.UtilForDBWorking;
 
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
@@ -31,9 +28,7 @@ public class DialogForSoldProductController {
 
 
     public void onOk(ActionEvent actionEvent) throws SQLException, FileNotFoundException {
-        SoldProductDao soldProductDao = new SoldProductDaoImplDB();
-        ProductDao productDao = new ProductDaoImplDB();
-        Product product = productDao.getProduct(Long.parseLong(tfSoldProductCode.getText()));
+        Product product = UtilForDBWorking.getRecord(Long.parseLong(tfSoldProductCode.getText()),new Product());
         Long currentTime = new Long(System.currentTimeMillis());
 
         String soldProductName = product.getProductName();
@@ -46,7 +41,7 @@ public class DialogForSoldProductController {
         SoldProduct soldProduct = new SoldProduct(currentTime,soldProductName,userName,clientName,
                 soldProductNumber,soldProductPrice,dateTime);
 //        System.out.println(soldProduct);
-        soldProductDao.addSoldProduct(soldProduct);
+        UtilForDBWorking.addRecord(soldProduct);
     }
 
     public void onCancel(ActionEvent actionEvent) {

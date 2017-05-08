@@ -8,7 +8,7 @@ public class Department {
     private String departmentAddress;
     private String departmentName;
 
-    Department(){}
+    public Department(){}
 
     public Department( String departmentAddress, String departmentName) {
         this.departmentAddress = departmentAddress;

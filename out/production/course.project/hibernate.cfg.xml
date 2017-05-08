@@ -14,11 +14,12 @@
         <property name="hibernate.enable_lazy_load_no_trans">true</property>
 
         <mapping resource="user.hbm.xml"/>
-        <mapping resource="sold_product.hbm.xml"/>
-        <mapping resource="coming_product.hbm.xml"/>
-        <mapping resource="product.hbm.xml"/>
-        <mapping resource="client.hbm.xml"/>
-        <mapping resource="department.hbm.xml"/>
+        <!--<mapping resource="sold_product.hbm.xml"/>-->
+        <!--<mapping resource="coming_product.hbm.xml"/>-->
+        <!--<mapping resource="product.hbm.xml"/>-->
+        <!--<mapping resource="client.hbm.xml"/>-->
+        <!--<mapping resource="department.hbm.xml"/>-->
+        <!--<mapping resource="provider.hbm.xml"/>-->
 
         <!--<property name="hbm2ddl.auto">update</property>-->
         <!-- DB schema will be updated if needed -->

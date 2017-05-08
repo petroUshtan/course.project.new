@@ -8,6 +8,6 @@
             <!--<generator class="native"></generator>-->
         </id>
         <property name="clientFIO" column="clientFIO" type="java.lang.String"/>
-        <property name="registerTime" column="productPrice" type="java.util.Date"/>
+        <property name="registerTime" column="registerTime" type="java.util.Date"/>
     </class>
 </hibernate-mapping>

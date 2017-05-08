@@ -1,1 +1,1 @@
-Всіх         
+root         ADMIN

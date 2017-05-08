@@ -1,7 +1,5 @@
 package controllers;
 
-import impls.UserDaoImplDB;
-import interfaces.UserDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -13,8 +11,10 @@ import javafx.scene.input.MouseEvent;
 import objects.Status;
 import objects.User;
 import util.MyUtils;
+import util.UtilForDBWorking;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by Work on 18.04.2017.
@@ -36,13 +36,12 @@ public class AdminWindowController {
     @FXML
     ComboBox<String> cbStatus;
 
-    UserDao userDao = new CFactory().getUserDao();
     ObservableList<User> observableList ;
     ObservableList<String> observableListStatus ;
     @FXML
     void initialize(){
         try {
-            observableList= FXCollections.observableArrayList(userDao.getUser());
+            observableList= FXCollections.observableArrayList(UtilForDBWorking.getRecords(new User()));
             observableListStatus= FXCollections.observableArrayList(Status.getStatuses());
         }
         catch (SQLException e){
@@ -70,6 +69,7 @@ public class AdminWindowController {
                         tfUsername.setText(((User)row.getItem()).getUsername());
                         tfPassword.setText(((User)row.getItem()).getPassword());
                         cbStatus.setItems(observableListStatus);
+                        cbStatus.getSelectionModel().select(((User)row.getItem()).getStatus());
                     }catch (NullPointerException e){
                         MyUtils.AlertError("Помилка","Виберіть рядок!");
                     }
@@ -85,13 +85,13 @@ public class AdminWindowController {
         Delete();
         tfUsername.setText(usT);
         tfPassword.setText(pasT);
-//        cbStatus.setSelectionModel();
+        cbStatus.getSelectionModel().select(statT);
         Add();
     }
 
     public void Delete (){
         try {
-            userDao.deleteUser(((User)(tvUserList.getSelectionModel().getSelectedItem())));
+            UtilForDBWorking.deleteRecord(((tvUserList.getSelectionModel().getSelectedItem())));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -101,20 +101,26 @@ public class AdminWindowController {
     public void Add(){
         try {
             if((isUnic())&&(!tfUsername.getText().equals(""))&&(!tfPassword.getText().equals(""))){
-                userDao.addUser(new User(tfUsername.getText(),tfPassword.getText(),cbStatus.getSelectionModel().getSelectedItem()));
+                User user = new User(tfUsername.getText(),
+                        tfPassword.getText(),cbStatus.getSelectionModel().getSelectedItem());
+                new UtilForDBWorking().addRecord(user);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-         System.out.println(tfUsername.getText()+tfPassword.getText()+cbStatus.getSelectionModel().getSelectedItem());
         update();
     }
 
     boolean isUnic(){
         try {
-            for (User u : userDao.getUser()){
-                if((u.getUsername().equals(tfUsername.getText()))){
-                    return false;
+            List<User> userList = UtilForDBWorking.getRecords(new User());
+            for (User u : userList){
+                try {
+                    if ((u.getUsername().equals(tfUsername.getText()))) {
+                        return false;
+                    }
+                }catch (NullPointerException e){
+                    System.out.println("Null string in DB!");
                 }
             }
 
@@ -126,10 +132,10 @@ public class AdminWindowController {
 
     void update(){
         try {
-            observableList= FXCollections.observableArrayList(userDao.getUser());
+            observableList= FXCollections.observableArrayList(UtilForDBWorking.getRecords(new User()));
         }
         catch (SQLException e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         tcId.setCellValueFactory(new PropertyValueFactory<User,String>("username"));
         tcUsername.setCellValueFactory(new PropertyValueFactory<User,String>("password"));
@@ -141,6 +147,6 @@ public class AdminWindowController {
     void clearField(){
         tfUsername.clear();
         tfPassword.clear();
-//        cbStatus.setButtonCell((String)"");
+        cbStatus.getSelectionModel().clearSelection();
     }
 }

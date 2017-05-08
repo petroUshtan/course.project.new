@@ -1,10 +1,10 @@
 package controllers;
 
-import interfaces.DepartmentDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import objects.Department;
 import util.MyUtils;
+import util.UtilForDBWorking;
 
 import java.awt.*;
 import java.sql.SQLException;
@@ -21,11 +21,10 @@ public class DialogForAddingDepartmentController {
 
 
     public void onOK(ActionEvent actionEvent) throws SQLException {
-        DepartmentDao departmentDao = CFactory.getInstance().getDepartmentDao();
         if((!tfDepartmentAddress.getText().equals(""))&&(!tfDepartmentName.getText().equals(""))){
             Department department = new Department(tfDepartmentAddress.getText(),
                     tfDepartmentName.getText());
-            departmentDao.addDepartment(department);
+            UtilForDBWorking.addRecord(department);
         }else {
             MyUtils.AlertError("Помилка введення","Заповніть всі поля!");
         }

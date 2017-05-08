@@ -1,8 +1,5 @@
 package controllers;
 
-import interfaces.ComingProductDao;
-import interfaces.DepartmentDao;
-import interfaces.SoldProductDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import objects.*;
 import util.MyUtils;
+import util.UtilForDBWorking;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -177,15 +175,13 @@ public class MainWindowController {
     }
 
     public void fillForUser() throws FileNotFoundException {
-        SoldProductDao soldProductDao = CFactory.getInstance().getSoldProductDao();
-        ComingProductDao comingProductDao = CFactory.getInstance().getComingProductDao();
         String[] strings = MyUtils.readTmpFile();
         List<ComingProduct> comingProducts = null;
         List<SoldProduct> soldProducts = null;
         if(strings[0].trim().equals(MyUtils.ALL)){
             try{
-                soldProducts = soldProductDao.getSoldProducts();
-                comingProducts = comingProductDao.getComingProducts();
+                soldProducts = UtilForDBWorking.getRecords(new SoldProduct());
+                comingProducts = UtilForDBWorking.getRecords(new ComingProduct());
                 fillSoldProductTable(soldProducts);
                 fillComingProductTable(comingProducts);
             }catch (SQLException e){
@@ -193,8 +189,8 @@ public class MainWindowController {
             }
         }else {
             try{
-                soldProducts = soldProductDao.getSoldProducts(strings[0].trim());
-                comingProducts = comingProductDao.getComingProducts(strings[0].trim());
+                soldProducts = UtilForDBWorking.getRecordByFieldValue(new SoldProduct(),"userName",strings[0].trim());
+                comingProducts = UtilForDBWorking.getRecordByFieldValue(new ComingProduct(),"userName",strings[0].trim());
                 fillSoldProductTable(soldProducts);
                 fillComingProductTable(comingProducts);
             }catch (SQLException e){
@@ -205,8 +201,7 @@ public class MainWindowController {
 
     private void fillForManager() throws SQLException, FileNotFoundException {
         fillForUser();
-        DepartmentDao departmentDao = CFactory.getInstance().getDepartmentDao();
-        fillDepartmentTable(departmentDao.getDepartment());
+        fillDepartmentTable(UtilForDBWorking.getRecords(new Department()));
     }
 
     public void onExcelReport(ActionEvent actionEvent) {
@@ -264,34 +259,17 @@ public class MainWindowController {
     }
 
     public void onMbDeleteSoldProduct(ActionEvent actionEvent) throws SQLException, FileNotFoundException {
-         deleteSoldProduct((SoldProduct)soldProductTableView.getSelectionModel().getSelectedItem(),
-                 CFactory.getInstance().getSoldProductDao());
+        deleteRecord(soldProductTableView.getSelectionModel().getSelectedItem());
     }
 
     public void onMbDeleteCommingProduct(ActionEvent actionEvent) throws FileNotFoundException {
-        deleteComingProduct((ComingProduct) comingProductTableView.getSelectionModel().getSelectedItem(),
-                CFactory.getInstance().getComingProductDao());
+        deleteRecord(comingProductTableView.getSelectionModel().getSelectedItem());
     }
 
-    private void deleteSoldProduct(SoldProduct soldProduct,SoldProductDao soldProductDao) throws FileNotFoundException {
-
+    private <T> void deleteRecord(T t) throws FileNotFoundException {
         try {
-            if(soldProduct!=null){
-                soldProductDao.deleteSoldProduct(soldProduct);
-            }else {
-                MyUtils.AlertError("Помилка видалення", "Виберіть запис!");
-            }
-            fillForUser();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void deleteComingProduct(ComingProduct comingProduct,ComingProductDao comingProductDao) throws FileNotFoundException {
-
-        try {
-            if(comingProduct!=null){
-                comingProductDao.deleteComingProduct(comingProduct);
+            if(t!=null){
+                UtilForDBWorking.deleteRecord(t);
             }else {
                 MyUtils.AlertError("Помилка видалення", "Виберіть запис!");
             }
@@ -347,7 +325,7 @@ public class MainWindowController {
         ArrayList<String> usersForChart=new ArrayList<String>();
         String currentChoice = MyUtils.readTmpFile()[0].trim();
         if(currentChoice.trim().equals(MyUtils.ALL.trim())){
-            List<User> users = CFactory.getInstance().getUserDao().getUser();
+            List<User> users = UtilForDBWorking.getRecords(new User());
             for(User user : users){
                 usersForChart.add(user.getUsername());
             }
