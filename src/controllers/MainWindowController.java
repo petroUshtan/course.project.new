@@ -6,7 +6,6 @@ import interfaces.SoldProductDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,20 +28,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static util.MyUtils.filterForTable;
+
+
 /**
  * Created by Work on 13.04.2017.
  */
 public class MainWindowController {
 
-    static final String SOLD_PRODUCT_TYPE = "soldproduc";
-    static final String COMING_PRODUCT_TYPE = "comingproduc";
-    static final String USER_TYPE = "user";
-    static final String DEPARTMENT_TYPE = "department";
-
     @FXML
     ComboBox<String> cbCurrentUser;
     @FXML
     ComboBox<String> cbCurrentYear;
+    @FXML
+    ComboBox<String> cbSearchTable;
+    @FXML
+    ComboBox<String> cbSearchColumn;
     @FXML
     TableView soldProductTableView;
     @FXML
@@ -78,7 +79,9 @@ public class MainWindowController {
     TableColumn<Department,String> tcDepartmentName=new TableColumn<>();
     TableColumn<Department,String> tcDepartmentAddress=new TableColumn<>();
 
-    ObservableList<SoldProduct> observableList = null;
+    ObservableList<SoldProduct> soldProductObservableList = null;
+    ObservableList<Department> departmentObservableList = null;
+    ObservableList<ComingProduct> comingProductObservableList = null;
 
     @FXML
     void initialize() throws FileNotFoundException, SQLException {
@@ -97,12 +100,17 @@ public class MainWindowController {
             cbCurrentYear.getSelectionModel().selectFirst();
             fillForManager();
         }
+        cbSearchTable.getItems().addAll( "Продані",
+                                                    "Прийняті",
+                                                    "Відділи");
         createBarChart();
+        tfSearch.textProperty().addListener((obs, oldText, newText) -> {
+            onSearch();
+        });
     }
 
     void fillComingProductTable(List<ComingProduct> comingProducts){
-        ObservableList<ComingProduct> observableList = null;
-        observableList= FXCollections.observableArrayList(comingProducts);
+        comingProductObservableList= FXCollections.observableArrayList(comingProducts);
         tcComingProductId.setCellValueFactory(new PropertyValueFactory<ComingProduct,String>("comingProductId"));
         tcComingProductId.setText("ID");
         tcComingProductName.setCellValueFactory(new PropertyValueFactory<ComingProduct,String>("comingProductName"));
@@ -123,13 +131,13 @@ public class MainWindowController {
         comingProductTableView.getColumns().addAll(tcComingProductId,
                 tcComingProductName,tcComingUserName,tcComingClientName,tcComingProductNumber,
                 tcComingProductPrice,tcComingDateTime);
-        comingProductTableView.setItems(observableList);
+        comingProductTableView.setItems(comingProductObservableList);
 
     }
 
     void fillSoldProductTable(List<SoldProduct> soldProductList){
 
-        observableList= FXCollections.observableArrayList(soldProductList);
+        soldProductObservableList= FXCollections.observableArrayList(soldProductList);
         tcsoldProductId.setCellValueFactory(new PropertyValueFactory<SoldProduct,String>("soldProductId"));
         tcsoldProductId.setText("ID");
         tcSoldProductName.setCellValueFactory(new PropertyValueFactory<SoldProduct,String>("soldProductName"));
@@ -149,12 +157,11 @@ public class MainWindowController {
         }
         soldProductTableView.getColumns().addAll(tcsoldProductId,
                 tcSoldProductName,tcSoldUserName,tcSoldClientName,tcSoldProductNumber,tcSoldProductPrice,tcSoldDateTime);
-        soldProductTableView.setItems(observableList);
+        soldProductTableView.setItems(soldProductObservableList);
     }
 
     void fillDepartmentTable(List<Department> departments){
-        ObservableList<Department> observableList = null;
-        observableList= FXCollections.observableArrayList(departments);
+        departmentObservableList= FXCollections.observableArrayList(departments);
         tcDepartmentId.setCellValueFactory(new PropertyValueFactory<Department,String>("departmentId"));
         tcDepartmentId.setText("ID");
         tcDepartmentName.setCellValueFactory(new PropertyValueFactory<Department,String>("departmentName"));
@@ -166,7 +173,7 @@ public class MainWindowController {
         }
         departmentProductTableView.getColumns().addAll(tcDepartmentId,
                 tcDepartmentName,tcDepartmentAddress);
-        departmentProductTableView.setItems(observableList);
+        departmentProductTableView.setItems(departmentObservableList);
     }
 
     public void fillForUser() throws FileNotFoundException {
@@ -371,31 +378,131 @@ public class MainWindowController {
         }
 
     }
-    public static <T> ObservableList<T> filterForTable(String type,ObservableList<T> observableList,TextField filterField) {
-        ObservableList<T> newObservableList = FXCollections.observableArrayList();
-        final String filteredString = filterField.getText().trim();
-        switch (type){
-            case SOLD_PRODUCT_TYPE:{
-                for (SoldProduct soldProduct : ((ObservableList<SoldProduct>)observableList)){
-                    if (soldProduct.getUserName().contains(filteredString)){
-                        newObservableList.add((T)soldProduct);
-                    }
+
+    public void onSearch() {
+        switch (cbSearchTable.getSelectionModel().getSelectedItem().trim()){
+            case "Продані":{
+                switch (cbSearchColumn.getSelectionModel().getSelectedItem().trim()){
+                    case "ID":{
+                        soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
+                                MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_ID,
+                                soldProductObservableList,tfSearch));
+                    }break;
+                    case "Назва продукту":{
+                        soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
+                                MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_PRODUCT_NAME,
+                                soldProductObservableList,tfSearch));
+                    }break;
+                    case "Ім'я користувача":{
+                       soldProductTableView.setItems( filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
+                               MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_USER_NAME,
+                               soldProductObservableList,tfSearch));
+                    }break;
+                    case "Ім'я клієнта":{
+                        soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
+                                MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_CLIENT_NAME,
+                                soldProductObservableList,tfSearch));
+                    }break;
+                    case "Кількість продукту":{
+                        soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
+                                MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_PRODUCT_NUMBER,
+                                soldProductObservableList,tfSearch));
+                    }break;
+                    case "Ціна продукту":{
+                        soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
+                                MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_PRODUCT_PRICE,
+                                soldProductObservableList,tfSearch));
+                    }break;
+                    case "Дата":{
+                        soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
+                                MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_DATE_TIME,
+                                soldProductObservableList,tfSearch));
+                    }break;
                 }
-            };break;
-            case COMING_PRODUCT_TYPE:{
+            }break;
 
-            };break;
-            case USER_TYPE:{
+            case "Прийняті":{
+                switch (cbSearchColumn.getSelectionModel().getSelectedItem().trim()){
+                    case "ID":{
+                        comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
+                                MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_ID,
+                                comingProductObservableList,tfSearch));
+                    }break;
+                    case "Назва продукту":{
+                        comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
+                                MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_PRODUCT_NAME,
+                                comingProductObservableList,tfSearch));
+                    }break;
+                    case "Ім'я користувача":{
+                        comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
+                                MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_USER_NAME,
+                                comingProductObservableList,tfSearch));
+                    }break;
+                    case "Ім'я клієнта":{
+                        comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
+                                MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_CLIENT_NAME,
+                                comingProductObservableList,tfSearch));
+                    }break;
+                    case "Кількість продукту":{
+                        comingProductTableView.setItems( filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
+                                MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_PRODUCT_NUMBER,
+                                comingProductObservableList,tfSearch));
+                    }break;
+                    case "Ціна продукту":{
+                        comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
+                                MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_PRODUCT_PRICE,
+                                comingProductObservableList,tfSearch));
+                    }break;
+                    case "Дата":{
+                        comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
+                                MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_DATE_TIME,
+                                comingProductObservableList,tfSearch));
+                    }break;
+                }
+            }break;
 
-            };break;
-            case DEPARTMENT_TYPE:{
-
-            };break;
+            case "Відділи":{
+                switch (cbSearchColumn.getSelectionModel().getSelectedItem().trim()){
+                    case "ID":{
+                        departmentProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.DEPARTMENT_TYPE,
+                                MyUtils.COLUMN_IN_DEPARTMENT_TABLE.DEPARTMENT_ID,
+                                departmentObservableList,tfSearch));
+                    }break;
+                    case "Назва":{
+                        departmentProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.DEPARTMENT_TYPE,
+                                MyUtils.COLUMN_IN_DEPARTMENT_TABLE.DEPARTMENT_NAME,
+                                departmentObservableList,tfSearch));
+                    }break;
+                    case "Адреса":{
+                        departmentProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.DEPARTMENT_TYPE,
+                                MyUtils.COLUMN_IN_DEPARTMENT_TABLE.DEPARTMENT_ADDRESS,
+                                departmentObservableList,tfSearch));
+                    }break;
+                }
+            }break;
         }
-        return newObservableList;
     }
 
-    public void onSearch(Event actionEvent) {
-        soldProductTableView.setItems(filterForTable(SOLD_PRODUCT_TYPE,observableList,tfSearch));
+    public void onTableSelect(ActionEvent actionEvent) {
+        cbSearchColumn.getItems().clear();
+        if((cbSearchTable.getSelectionModel().getSelectedItem().trim().equals("Продані"))||
+                (cbSearchTable.getSelectionModel().getSelectedItem().trim().equals("Прийняті"))){
+            cbSearchColumn.getItems().addAll("ID",
+                    "Назва продукту",
+                    "Ім'я користувача",
+                    "Ім'я клієнта",
+                    "Кількість продукту",
+                    "Ціна продукту",
+                    "Дата");
+        }else if ((cbSearchTable.getSelectionModel().getSelectedItem().trim().equals("Відділи"))){
+            cbSearchColumn.getItems().addAll("ID",
+                    "Назва",
+                    "Адреса");
+        }
     }
+
+    public void onColumnSelect(ActionEvent actionEvent) {
+    }
+
+
 }

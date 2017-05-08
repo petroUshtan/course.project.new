@@ -4,9 +4,8 @@ import controllers.CFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
-import objects.DataForChart;
-import objects.SoldProduct;
-import objects.User;
+import javafx.scene.control.TextField;
+import objects.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -24,6 +23,36 @@ import java.util.Scanner;
  * Created by Work on 27.04.2017.
  */
 public class MyUtils {
+
+    public enum TYPES_OF_TABLE{
+        SOLD_PRODUCT_TYPE,COMING_PRODUCT_TYPE,USER_TYPE,DEPARTMENT_TYPE;
+    }
+
+    public enum COLUMN_IN_SOLD_PRODUCT_TABLE{
+        SOLD_ID,
+        SOLD_PRODUCT_NAME,
+        SOLD_USER_NAME,
+        SOLD_CLIENT_NAME,
+        SOLD_PRODUCT_NUMBER,
+        SOLD_PRODUCT_PRICE,
+        SOLD_DATE_TIME;
+    }
+    public enum COLUMN_IN_COMING_PRODUCT_TABLE{
+        COMING_ID,
+        COMING_PRODUCT_NAME,
+        COMING_USER_NAME,
+        COMING_CLIENT_NAME,
+        COMING_PRODUCT_NUMBER,
+        COMING_PRODUCT_PRICE,
+        COMING_DATE_TIME;
+    }
+
+    public enum COLUMN_IN_DEPARTMENT_TABLE{
+        DEPARTMENT_ID,
+        DEPARTMENT_NAME,
+        DEPARTMENT_ADDRESS;
+    }
+
     public final static String ALL="Всіх";
     public static String[] readTmpFile() throws FileNotFoundException {
         String content = new Scanner(new File("tmp.txt")).useDelimiter("\\Z").next();
@@ -182,5 +211,153 @@ public class MyUtils {
         return status;
     }
 
+    public static <T,D> ObservableList<T> filterForTable(MyUtils.TYPES_OF_TABLE TYPE, D COLUMN1,
+                                                         ObservableList<T> observableList, TextField filterField) {
+        ObservableList<T> newObservableList = FXCollections.observableArrayList();
+        String filteredString = filterField.getText().trim();
+        switch (TYPE){
+            case SOLD_PRODUCT_TYPE:{
+                ObservableList<SoldProduct> soldProducts = (ObservableList<SoldProduct>)observableList;
+                MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE COLUMN=(MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE)COLUMN1;
+                switch (COLUMN){
+                    case SOLD_ID:{
+                        for (SoldProduct soldProduct : soldProducts){
+                            if (soldProduct.getSoldProductId().toString().trim().contains(filteredString)){
+                                newObservableList.add((T) soldProduct);
+                            }
+                        }
+                    }break;
+                    case SOLD_USER_NAME:{
+                        for (SoldProduct soldProduct : soldProducts){
+                            if (soldProduct.getUserName().trim().contains(filteredString)){
+                                newObservableList.add((T) soldProduct);
+                            }
+                        }
+                    }break;
+                    case SOLD_CLIENT_NAME:{
+                        for (SoldProduct soldProduct : soldProducts){
+                            if (soldProduct.getClientName().trim().contains(filteredString)){
+                                newObservableList.add((T) soldProduct);
+                            }
+                        }
+                    }break;
+                    case SOLD_PRODUCT_PRICE:{
+                        for (SoldProduct soldProduct : soldProducts){
+                            if (soldProduct.getSoldProductPrice().toString().trim().contains(filteredString)){
+                                newObservableList.add((T) soldProduct);
+                            }
+                        }
+                    }break;
+                    case SOLD_PRODUCT_NAME:{
+                        for (SoldProduct soldProduct : soldProducts){
+                            if (soldProduct.getSoldProductName().trim().contains(filteredString)){
+                                newObservableList.add((T) soldProduct);
+                            }
+                        }
+                    }break;
+                    case SOLD_DATE_TIME:{
+                        for (SoldProduct soldProduct : soldProducts){
+                            if (soldProduct.getDateTime().toString().trim().contains(filteredString)){
+                                newObservableList.add((T) soldProduct);
+                            }
+                        }
+                    }break;
+                    case SOLD_PRODUCT_NUMBER:{
+                        for (SoldProduct soldProduct : soldProducts){
+                            if (soldProduct.getSoldProductNumber().toString().trim().contains(filteredString)){
+                                newObservableList.add((T) soldProduct);
+                            }
+                        }
+                    }break;
+                }
+            };break;
+
+            case COMING_PRODUCT_TYPE:{
+                MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE COLUMN=(MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE)COLUMN1;
+                ObservableList<ComingProduct> comingProducts = (ObservableList<ComingProduct>)observableList;
+                switch (COLUMN){
+                    case COMING_ID:{
+                        for (ComingProduct comingProduct : comingProducts){
+                            if (comingProduct.getComingProductId().toString().trim().contains(filteredString)){
+                                newObservableList.add((T) comingProduct);
+                            }
+                        }
+                    }break;
+                    case COMING_USER_NAME:{
+                        for (ComingProduct comingProduct : comingProducts){
+                            if (comingProduct.getUserName().trim().contains(filteredString)){
+                                newObservableList.add((T) comingProduct);
+                            }
+                        }
+                    }break;
+                    case COMING_CLIENT_NAME:{
+                        for (ComingProduct comingProduct : comingProducts){
+                            if (comingProduct.getClientName().trim().contains(filteredString)){
+                                newObservableList.add((T) comingProduct);
+                            }
+                        }
+                    }break;
+                    case COMING_PRODUCT_PRICE:{
+                        for (ComingProduct comingProduct : comingProducts){
+                            if (comingProduct.getComingProductPrice().toString().trim().contains(filteredString)){
+                                newObservableList.add((T) comingProduct);
+                            }
+                        }
+                    }break;
+                    case COMING_PRODUCT_NAME:{
+                        for (ComingProduct comingProduct : comingProducts){
+                            if (comingProduct.getComingProductName().trim().contains(filteredString)){
+                                newObservableList.add((T) comingProduct);
+                            }
+                        }
+                    }break;
+                    case COMING_DATE_TIME:{
+                        for (ComingProduct comingProduct : comingProducts){
+                            if (comingProduct.getDateTime().toString().trim().contains(filteredString)){
+                                newObservableList.add((T) comingProduct);
+                            }
+                        }
+                    }break;
+                    case COMING_PRODUCT_NUMBER:{
+                        for (ComingProduct comingProduct : comingProducts){
+                            if (comingProduct.getComingProductNumber().toString().trim().contains(filteredString)){
+                                newObservableList.add((T) comingProduct);
+                            }
+                        }
+                    }break;
+                }
+            };break;
+
+            case DEPARTMENT_TYPE:{
+                MyUtils.COLUMN_IN_DEPARTMENT_TABLE COLUMN=(MyUtils.COLUMN_IN_DEPARTMENT_TABLE)COLUMN1;
+                ObservableList<Department> departments = (ObservableList<Department>)observableList;
+                switch (COLUMN){
+                    case DEPARTMENT_ID:{
+                        for (Department department : departments){
+                            if (department.getDepartmentId().toString().trim().contains(filteredString)){
+                                newObservableList.add((T) department);
+                            }
+                        }
+                    }break;
+                    case DEPARTMENT_NAME:{
+                        for (Department department : departments){
+                            if (department.getDepartmentName().trim().contains(filteredString)){
+                                newObservableList.add((T) department);
+                            }
+                        }
+                    }break;
+                    case DEPARTMENT_ADDRESS:{
+                        for (Department department : departments){
+                            if (department.getDepartmentAddress().trim().contains(filteredString)){
+                                newObservableList.add((T) department);
+                            }
+                        }
+                    }break;
+
+                }
+            };break;
+        }
+        return newObservableList;
+    }
 
 }

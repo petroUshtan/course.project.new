@@ -28,7 +28,6 @@
             <ComboBox fx:id="cbCurrentYear" layoutX="144.0" layoutY="10.0" onAction="#onUpdateData" prefHeight="25.0" prefWidth="88.0" />
             <Label layoutX="304.0" layoutY="14.0" text="Місяць" />
             <ComboBox fx:id="cbCurrentMonth" layoutX="330.0" layoutY="10.0" onAction="#onUpdateData" prefHeight="25.0" prefWidth="88.0" />
-            <TextField fx:id="tfSearch" onAction="#onSearch" onKeyTyped="#onSearch" prefHeight="25.0" prefWidth="190.0" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -103,6 +102,19 @@
             <Label fx:id="lbCurrentUserStatus" text="1235454" />
             <Label fx:id="lbCurrentUserName" text="1235454" />
          </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="35.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <Label prefHeight="17.0" prefWidth="114.0" text="Пошук в таблиці" />
+            <ComboBox fx:id="cbSearchTable" onAction="#onTableSelect" prefHeight="25.0" prefWidth="150.0" />
+            <Label layoutX="20.0" layoutY="14.0" text="по стовпцю" />
+            <ComboBox fx:id="cbSearchColumn" layoutX="144.0" layoutY="10.0" onAction="#onColumnSelect" prefHeight="25.0" prefWidth="88.0" />
+            <Label layoutX="304.0" layoutY="14.0" text="запит" />
+            <TextField fx:id="tfSearch" prefHeight="25.0" prefWidth="190.0" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </HBox>
    </children>
 </AnchorPane>
