@@ -6,6 +6,7 @@ import interfaces.SoldProductDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,9 +15,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -34,6 +33,12 @@ import java.util.List;
  * Created by Work on 13.04.2017.
  */
 public class MainWindowController {
+
+    static final String SOLD_PRODUCT_TYPE = "soldproduc";
+    static final String COMING_PRODUCT_TYPE = "comingproduc";
+    static final String USER_TYPE = "user";
+    static final String DEPARTMENT_TYPE = "department";
+
     @FXML
     ComboBox<String> cbCurrentUser;
     @FXML
@@ -46,6 +51,12 @@ public class MainWindowController {
     TableView departmentProductTableView;
     @FXML
     BarChart<String,Number> barChartStatistic;
+    @FXML
+    Label lbCurrentUserName;
+    @FXML
+    Label lbCurrentUserStatus;
+    @FXML
+    TextField tfSearch;
 
     TableColumn<SoldProduct,String> tcsoldProductId=new TableColumn<>();
     TableColumn<SoldProduct,String> tcSoldProductName=new TableColumn<>();
@@ -67,29 +78,31 @@ public class MainWindowController {
     TableColumn<Department,String> tcDepartmentName=new TableColumn<>();
     TableColumn<Department,String> tcDepartmentAddress=new TableColumn<>();
 
+    ObservableList<SoldProduct> observableList = null;
+
     @FXML
     void initialize() throws FileNotFoundException, SQLException {
-            if(MyUtils.readTmpFile()[1].trim().equals(Status.getUSER())){
-                cbCurrentUser.getItems().add(MyUtils.readTmpFile()[0]);
-                cbCurrentUser.getSelectionModel().selectFirst();
-                cbCurrentYear.getItems().addAll(MyUtils.getYearsFromDB());
-                cbCurrentYear.getSelectionModel().selectFirst();
-                fillForUser();
-            }else if (MyUtils.readTmpFile()[1].trim().equals(Status.getMANAGER())){
-                if(cbCurrentUser.getSelectionModel().isEmpty()){
-                    cbCurrentUser.getItems().addAll(MyUtils.getUsersFromDB());
-                    cbCurrentUser.getSelectionModel().selectFirst();
-                    cbCurrentYear.getItems().addAll(MyUtils.getYearsFromDB());
-                    cbCurrentYear.getSelectionModel().selectFirst();
-                }
-                fillForManager();
-            }
+        lbCurrentUserName.setText(MyUtils.readTmpFile()[0].trim());
+        lbCurrentUserStatus.setText(MyUtils.readTmpFile()[1].trim());
+        if (MyUtils.readTmpFile()[1].trim().equals(Status.getUSER())) {
+            cbCurrentUser.getItems().add(MyUtils.readTmpFile()[0]);
+            cbCurrentUser.getSelectionModel().selectFirst();
+            cbCurrentYear.getItems().addAll(MyUtils.getYearsFromDB());
+            cbCurrentYear.getSelectionModel().selectFirst();
+            fillForUser();
+        } else if (MyUtils.readTmpFile()[1].trim().equals(Status.getMANAGER())) {
+            cbCurrentUser.getItems().addAll(MyUtils.getUsersFromDB());
+            cbCurrentUser.getSelectionModel().selectFirst();
+            cbCurrentYear.getItems().addAll(MyUtils.getYearsFromDB());
+            cbCurrentYear.getSelectionModel().selectFirst();
+            fillForManager();
+        }
+        createBarChart();
     }
 
     void fillComingProductTable(List<ComingProduct> comingProducts){
         ObservableList<ComingProduct> observableList = null;
         observableList= FXCollections.observableArrayList(comingProducts);
-
         tcComingProductId.setCellValueFactory(new PropertyValueFactory<ComingProduct,String>("comingProductId"));
         tcComingProductId.setText("ID");
         tcComingProductName.setCellValueFactory(new PropertyValueFactory<ComingProduct,String>("comingProductName"));
@@ -108,18 +121,15 @@ public class MainWindowController {
             comingProductTableView.getColumns().clear();
         }
         comingProductTableView.getColumns().addAll(tcComingProductId,
-                tcComingProductName,tcComingUserName,tcComingClientName,tcComingProductNumber,tcComingProductPrice,tcComingDateTime);
+                tcComingProductName,tcComingUserName,tcComingClientName,tcComingProductNumber,
+                tcComingProductPrice,tcComingDateTime);
         comingProductTableView.setItems(observableList);
-//        tcUsername.setCellValueFactory(new PropertyValueFactory<SoldProduct,String>("password"));
-//        tcStatus.setCellValueFactory(new PropertyValueFactory<SoldProduct, String>("status"));
-//        tvUserList.setItems(observableList);
 
     }
 
     void fillSoldProductTable(List<SoldProduct> soldProductList){
-        ObservableList<SoldProduct> observableList = null;
-        observableList= FXCollections.observableArrayList(soldProductList);
 
+        observableList= FXCollections.observableArrayList(soldProductList);
         tcsoldProductId.setCellValueFactory(new PropertyValueFactory<SoldProduct,String>("soldProductId"));
         tcsoldProductId.setText("ID");
         tcSoldProductName.setCellValueFactory(new PropertyValueFactory<SoldProduct,String>("soldProductName"));
@@ -134,34 +144,29 @@ public class MainWindowController {
         tcSoldProductPrice.setText("Ціна");
         tcSoldDateTime.setCellValueFactory(new PropertyValueFactory<SoldProduct,String>("dateTime"));
         tcSoldDateTime.setText("Дата");
-
         if(!soldProductTableView.getColumns().isEmpty()){
             soldProductTableView.getColumns().clear();
         }
         soldProductTableView.getColumns().addAll(tcsoldProductId,
                 tcSoldProductName,tcSoldUserName,tcSoldClientName,tcSoldProductNumber,tcSoldProductPrice,tcSoldDateTime);
         soldProductTableView.setItems(observableList);
-
     }
 
     void fillDepartmentTable(List<Department> departments){
         ObservableList<Department> observableList = null;
         observableList= FXCollections.observableArrayList(departments);
-
         tcDepartmentId.setCellValueFactory(new PropertyValueFactory<Department,String>("departmentId"));
         tcDepartmentId.setText("ID");
         tcDepartmentName.setCellValueFactory(new PropertyValueFactory<Department,String>("departmentName"));
         tcDepartmentName.setText("Назва відділу");
         tcDepartmentAddress.setCellValueFactory(new PropertyValueFactory<Department,String>("departmentAddress"));
         tcDepartmentAddress.setText("Адреса");
-
-        if(!soldProductTableView.getColumns().isEmpty()){
-            soldProductTableView.getColumns().clear();
+        if(!departmentProductTableView.getColumns().isEmpty()){
+            departmentProductTableView.getColumns().clear();
         }
         departmentProductTableView.getColumns().addAll(tcDepartmentId,
                 tcDepartmentName,tcDepartmentAddress);
         departmentProductTableView.setItems(observableList);
-
     }
 
     public void fillForUser() throws FileNotFoundException {
@@ -191,7 +196,8 @@ public class MainWindowController {
         }
     }
 
-    private void fillForManager() throws SQLException {
+    private void fillForManager() throws SQLException, FileNotFoundException {
+        fillForUser();
         DepartmentDao departmentDao = CFactory.getInstance().getDepartmentDao();
         fillDepartmentTable(departmentDao.getDepartment());
     }
@@ -318,11 +324,14 @@ public class MainWindowController {
 
     }
 
-    public void onUpdateData(ActionEvent actionEvent) throws IOException, SQLException {
+    public void onUpdateData() throws IOException, SQLException {
         MyUtils.writeTmpFile(cbCurrentUser.getSelectionModel().getSelectedItem(),
                             MyUtils.getStatusOfUser(cbCurrentUser.getSelectionModel().getSelectedItem()));
         fillForUser();
         createBarChart();
+        if(lbCurrentUserStatus.getText().trim().equals(Status.getMANAGER())){
+            fillForManager();
+        }
 
     }
 
@@ -338,7 +347,7 @@ public class MainWindowController {
         }else {
             usersForChart.add(currentChoice);
         }
-        DataForChart dataForChart = MyUtils.prepareDataForChart(usersForChart,Integer.parseInt(cbCurrentYear.getSelectionModel().getSelectedItem().trim()));
+        DataForChart dataForChart = MyUtils.prepareDataForChart(usersForChart,cbCurrentYear.getSelectionModel().getSelectedItem());
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
         barChartStatistic.setTitle(dataForChart.getChartTitle());
@@ -362,5 +371,31 @@ public class MainWindowController {
         }
 
     }
+    public static <T> ObservableList<T> filterForTable(String type,ObservableList<T> observableList,TextField filterField) {
+        ObservableList<T> newObservableList = FXCollections.observableArrayList();
+        final String filteredString = filterField.getText().trim();
+        switch (type){
+            case SOLD_PRODUCT_TYPE:{
+                for (SoldProduct soldProduct : ((ObservableList<SoldProduct>)observableList)){
+                    if (soldProduct.getUserName().contains(filteredString)){
+                        newObservableList.add((T)soldProduct);
+                    }
+                }
+            };break;
+            case COMING_PRODUCT_TYPE:{
 
+            };break;
+            case USER_TYPE:{
+
+            };break;
+            case DEPARTMENT_TYPE:{
+
+            };break;
+        }
+        return newObservableList;
+    }
+
+    public void onSearch(Event actionEvent) {
+        soldProductTableView.setItems(filterForTable(SOLD_PRODUCT_TYPE,observableList,tfSearch));
+    }
 }

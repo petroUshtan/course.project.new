@@ -20,18 +20,21 @@
 
 <AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="440.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
    <children>
-      <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+      <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
          <children>
             <Label text="Дані по користувачу" />
             <ComboBox fx:id="cbCurrentUser" onAction="#onUpdateData" prefWidth="150.0" />
             <Label layoutX="20.0" layoutY="14.0" text="Рік" />
             <ComboBox fx:id="cbCurrentYear" layoutX="144.0" layoutY="10.0" onAction="#onUpdateData" prefHeight="25.0" prefWidth="88.0" />
+            <Label layoutX="304.0" layoutY="14.0" text="Місяць" />
+            <ComboBox fx:id="cbCurrentMonth" layoutX="330.0" layoutY="10.0" onAction="#onUpdateData" prefHeight="25.0" prefWidth="88.0" />
+            <TextField fx:id="tfSearch" onAction="#onSearch" onKeyTyped="#onSearch" prefHeight="25.0" prefWidth="190.0" />
          </children>
          <padding>
-            <Insets left="10.0" />
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </HBox>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="317.0" prefWidth="294.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="317.0" prefWidth="294.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0">
          <children>
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <tabs>
@@ -95,5 +98,11 @@
           </Menu>
         </menus>
       </MenuBar>
+      <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="200.0" spacing="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="lbCurrentUserStatus" text="1235454" />
+            <Label fx:id="lbCurrentUserName" text="1235454" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

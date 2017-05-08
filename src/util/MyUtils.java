@@ -15,6 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.*;
 import java.sql.SQLException;
 import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -27,8 +28,6 @@ public class MyUtils {
     public static String[] readTmpFile() throws FileNotFoundException {
         String content = new Scanner(new File("tmp.txt")).useDelimiter("\\Z").next();
         String[] strings = content.split("         ");
-        System.out.println("|"+strings[0]+"|");
-        System.out.println("|"+strings[1]+"|");
         return strings;
     }
 
@@ -94,10 +93,11 @@ public class MyUtils {
     }
 
     public static ObservableList<String> getYearsFromDB() throws SQLException {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy");
         List<SoldProduct> soldProducts = CFactory.getInstance().getSoldProductDao().getSoldProducts();
         ArrayList<String> tmpArray = new ArrayList<>();
         for(SoldProduct soldProduct : soldProducts){
-            String tmp = Integer.toString(soldProduct.getDateTime().getYear());
+            String tmp = Integer.toString(Integer.parseInt(Integer.toString(Integer.parseInt(df.format(soldProduct.getDateTime()))).trim()));
             if(isUniqInArray(tmpArray,tmp)){
                 tmpArray.add(tmp);
             }
@@ -106,7 +106,8 @@ public class MyUtils {
         return FXCollections.observableArrayList(tmpArray);
     }
 
-    public static DataForChart prepareDataForChart(ArrayList<String> seriaTitles,Integer currentYear) throws FileNotFoundException, SQLException {
+    public static DataForChart prepareDataForChart(ArrayList<String> seriaTitles,String currentYear) throws FileNotFoundException, SQLException {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy");
         DataForChart dataForChart = new DataForChart();
         dataForChart.setChartTitle("Статистика по користувачу: "+MyUtils.readTmpFile()[0].trim());
         dataForChart.setxLabel("Місяць");
@@ -117,7 +118,7 @@ public class MyUtils {
         ArrayList<ArrayList<Double>> dataValues = new ArrayList<ArrayList<Double>>() ;
         for(SoldProduct soldProduct : soldProducts){
             Integer tmpValue = new Integer(soldProduct.getDateTime().getMonth());
-            if((isUniqInArray(monthsInt,tmpValue))&&(soldProduct.getDateTime().getYear()==currentYear)) {
+            if((isUniqInArray(monthsInt,tmpValue))&&(currentYear.trim().equals(Integer.toString(Integer.parseInt(df.format(soldProduct.getDateTime()))).trim()))) {
                 monthsInt.add(tmpValue);
             }
         }
@@ -135,9 +136,11 @@ public class MyUtils {
             for (String month : months){
                 Double tmp =new Double(0);
                 for (SoldProduct soldProduct : soldProducts){
+
+                    System.out.println(df.format(soldProduct.getDateTime()));
                     if((month.equals(getMonthName(soldProduct.getDateTime().getMonth()).trim()))&&
                             (seriaTitle.trim().equals(soldProduct.getUserName().trim()))&&
-                            (soldProduct.getDateTime().getYear()==currentYear))  {
+                            (currentYear.trim().equals(Integer.toString(Integer.parseInt(df.format(soldProduct.getDateTime()))).trim())))  {
                         tmp+=soldProduct.getSoldProductNumber()*soldProduct.getSoldProductPrice();
                     }
                 }
@@ -178,4 +181,6 @@ public class MyUtils {
         }
         return status;
     }
+
+
 }
