@@ -12,9 +12,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -82,7 +84,7 @@ public class MyUtils {
         XSSFSheet sheet = workbook.createSheet(sheetName);
 
         int rowNum = 0;
-        System.out.println("Creating excel");
+//        System.out.println("Creating excel");
 
         for (Object[] datatype : datatypes) {
             Row row = sheet.createRow(rowNum++);
@@ -107,7 +109,7 @@ public class MyUtils {
             e.printStackTrace();
         }
 
-        System.out.println("Done");
+//        System.out.println("Done");
     }
 
     public static ObservableList<String> getUsersFromDB() throws SQLException {
@@ -157,7 +159,7 @@ public class MyUtils {
         ArrayList<String> months = new ArrayList<String>();
         for(Integer integer : monthsInt){
             months.add(getMonthName(integer));
-            System.out.println(integer+" "+getMonthName(integer));
+//            System.out.println(integer+" "+getMonthName(integer));
         }
         for(String seriaTitle : seriaTitles){
             ArrayList<Double> arrayList =new ArrayList<Double>();
@@ -165,7 +167,7 @@ public class MyUtils {
                 Double tmp =new Double(0);
                 for (SoldProduct soldProduct : soldProducts){
 
-                    System.out.println(df.format(soldProduct.getDateTime()));
+//                    System.out.println(df.format(soldProduct.getDateTime()));
                     if((month.equals(getMonthName(soldProduct.getDateTime().getMonth()).trim()))&&
                             (seriaTitle.trim().equals(soldProduct.getUserName().trim()))&&
                             (currentYear.trim().equals(Integer.toString(Integer.parseInt(df.format(soldProduct.getDateTime()))).trim())))  {
@@ -357,6 +359,11 @@ public class MyUtils {
             };break;
         }
         return newObservableList;
+    }
+
+    public static String getCurrentDateTime(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        return dateFormat.format(new Date());
     }
 
 }

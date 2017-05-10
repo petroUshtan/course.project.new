@@ -1,7 +1,6 @@
 package controllers;
 
-import impls.LoginImplDB;
-import interfaces.Login;
+import impls.Login;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -34,7 +33,7 @@ public class LoginController {
         Parent rootNode = null;
         lbLoginError.setText("");
         try {
-            Login lg = new LoginImplDB();
+            Login lg = new Login();
             if(lg.verify(tfUsername.getText(),tfPassword.getText())){
                MyUtils.writeTmpFile(tfUsername.getText(),lg.getStatusOfUser(tfUsername.getText(),tfPassword.getText()));
                if((lg.getStatusOfUser(tfUsername.getText(),tfPassword.getText())).equals(Status.getADMIN())){

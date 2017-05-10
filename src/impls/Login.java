@@ -1,6 +1,5 @@
 package impls;
 
-import interfaces.Login;
 import objects.User;
 import util.UtilForDBWorking;
 
@@ -10,8 +9,7 @@ import java.util.List;
 /**
  * Created by Work on 19.04.2017.
  */
-public class LoginImplDB implements Login {
-    @Override
+public class Login {
     public  String getStatusOfUser(String username, String password){
         String status="";
         try {
@@ -27,7 +25,6 @@ public class LoginImplDB implements Login {
         return status;
     }
 
-    @Override
     public boolean verify( String username, String password) {
         try {
             List<User> users = UtilForDBWorking.getRecords(new User());

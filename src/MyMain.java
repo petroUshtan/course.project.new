@@ -11,7 +11,7 @@ public class MyMain extends Application {
         primaryStage.setTitle("АРМ працівника складу");
         primaryStage.setScene(new Scene(root/*, 320, 160*/));
         primaryStage.show();
-//        UtilForDBWorking.addRecord(new User());
+
     }
 
     public static void main(String[] args) {launch(args);}

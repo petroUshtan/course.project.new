@@ -81,12 +81,10 @@
               <MenuItem fx:id="mbAddSoldProduct" mnemonicParsing="false" onAction="#onMbAddSoldProduct" text="Додати проданий" />
                   <MenuItem fx:id="mbAddComingProduct" mnemonicParsing="false" onAction="#onMbAddComingProduct" text="Додати отриманий" />
                   <MenuItem fx:id="mbAddProduct" mnemonicParsing="false" onAction="#onMbAddProduct" text="Додати продукт" />
-                  <MenuItem fx:id="mbAddProvider" mnemonicParsing="false" onAction="#onMbAddProvider" text="Додати постачальника" />
                   <MenuItem fx:id="mbAddDepartment" mnemonicParsing="false" onAction="#onMbAddDepartment" text="Додати відділ" />
                   <MenuItem fx:id="mbDeleteSoldProduct" mnemonicParsing="false" onAction="#onMbDeleteSoldProduct" text="Видалити проданий" />
                   <MenuItem fx:id="mbDeleteComing" mnemonicParsing="false" onAction="#onMbDeleteCommingProduct" text="Видалити отриманий" />
                   <MenuItem fx:id="mbDeleteProduct" mnemonicParsing="false" onAction="#onMbDeleteProduct" text="Видалити продукт" />
-                  <MenuItem fx:id="mbDeleteProvider" mnemonicParsing="false" onAction="#onMbDeleteProvider" text="Видалити постачальника" />
                   <MenuItem fx:id="mbDeleteDepartment" mnemonicParsing="false" onAction="#onMbDeleteDepartment" text="Видалити відділ" />
             </items>
           </Menu>

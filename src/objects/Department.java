@@ -1,5 +1,7 @@
 package objects;
 
+import util.MyUtils;
+
 /**
  * Created by Work on 26.04.2017.
  */
@@ -11,6 +13,7 @@ public class Department {
     public Department(){}
 
     public Department( String departmentAddress, String departmentName) {
+        departmentId = MyUtils.setUniqueId();
         this.departmentAddress = departmentAddress;
         this.departmentName = departmentName;
     }

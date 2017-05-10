@@ -224,8 +224,12 @@ public class MainWindowController {
             stage.initModality(Modality.WINDOW_MODAL);
             stage.setOnCloseRequest((WindowEvent we) -> {
                 try {
-                    fillForUser();
+                    onUpdateData();
                 } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
@@ -247,8 +251,12 @@ public class MainWindowController {
 //            stage.initOwner(((Stage)actionEvent.getSource()).getScene().getWindow());
             stage.setOnCloseRequest((WindowEvent we) -> {
                 try {
-                    fillForUser();
+                    onUpdateData();
                 } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
@@ -278,10 +286,6 @@ public class MainWindowController {
             e.printStackTrace();
         }
     }
-
-    private void createSampleByDay(){
-
-    }
     private void createSampleByMonth(){
 
     }
@@ -290,19 +294,60 @@ public class MainWindowController {
     }
 
     public void onMbAddProduct(ActionEvent actionEvent) {
-
-    }
-
-    public void onMbAddProvider(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            Parent rootNode = null;
+            rootNode = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/DialogForAddingProduct.fxml"));
+            Scene scene = new Scene(rootNode);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.initModality(Modality.WINDOW_MODAL);
+//            stage.initOwner(((Stage)actionEvent.getSource()).getScene().getWindow());
+            stage.setOnCloseRequest((WindowEvent we) -> {
+                try {
+                    onUpdateData();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void onMbAddDepartment(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            Parent rootNode = null;
+            rootNode = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/DialogForAddingDepartment.fxml"));
+            Scene scene = new Scene(rootNode);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.initModality(Modality.WINDOW_MODAL);
+//            stage.initOwner(((Stage)actionEvent.getSource()).getScene().getWindow());
+            stage.setOnCloseRequest((WindowEvent we) -> {
+                try {
+                    onUpdateData();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void onMbDeleteProduct(ActionEvent actionEvent) {
-    }
-
-    public void onMbDeleteProvider(ActionEvent actionEvent) {
     }
 
     public void onMbDeleteDepartment(ActionEvent actionEvent) {
@@ -358,106 +403,114 @@ public class MainWindowController {
     }
 
     public void onSearch() {
-        switch (cbSearchTable.getSelectionModel().getSelectedItem().trim()){
-            case "Продані":{
-                switch (cbSearchColumn.getSelectionModel().getSelectedItem().trim()){
-                    case "ID":{
-                        soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
-                                MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_ID,
-                                soldProductObservableList,tfSearch));
+        if(!cbSearchTable.getSelectionModel().isEmpty()){
+            if(!cbSearchColumn.getSelectionModel().isEmpty()){
+                switch (cbSearchTable.getSelectionModel().getSelectedItem().trim()){
+                    case "Продані":{
+                        switch (cbSearchColumn.getSelectionModel().getSelectedItem().trim()){
+                            case "ID":{
+                                soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
+                                        MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_ID,
+                                        soldProductObservableList,tfSearch));
+                            }break;
+                            case "Назва продукту":{
+                                soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
+                                        MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_PRODUCT_NAME,
+                                        soldProductObservableList,tfSearch));
+                            }break;
+                            case "Продавець":{
+                                soldProductTableView.setItems( filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
+                                        MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_USER_NAME,
+                                        soldProductObservableList,tfSearch));
+                            }break;
+                            case "Ім'я клієнта":{
+                                soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
+                                        MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_CLIENT_NAME,
+                                        soldProductObservableList,tfSearch));
+                            }break;
+                            case "Кількість продукту":{
+                                soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
+                                        MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_PRODUCT_NUMBER,
+                                        soldProductObservableList,tfSearch));
+                            }break;
+                            case "Ціна продукту":{
+                                soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
+                                        MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_PRODUCT_PRICE,
+                                        soldProductObservableList,tfSearch));
+                            }break;
+                            case "Дата":{
+                                soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
+                                        MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_DATE_TIME,
+                                        soldProductObservableList,tfSearch));
+                            }break;
+                        }
                     }break;
-                    case "Назва продукту":{
-                        soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
-                                MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_PRODUCT_NAME,
-                                soldProductObservableList,tfSearch));
-                    }break;
-                    case "Ім'я користувача":{
-                       soldProductTableView.setItems( filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
-                               MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_USER_NAME,
-                               soldProductObservableList,tfSearch));
-                    }break;
-                    case "Ім'я клієнта":{
-                        soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
-                                MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_CLIENT_NAME,
-                                soldProductObservableList,tfSearch));
-                    }break;
-                    case "Кількість продукту":{
-                        soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
-                                MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_PRODUCT_NUMBER,
-                                soldProductObservableList,tfSearch));
-                    }break;
-                    case "Ціна продукту":{
-                        soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
-                                MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_PRODUCT_PRICE,
-                                soldProductObservableList,tfSearch));
-                    }break;
-                    case "Дата":{
-                        soldProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.SOLD_PRODUCT_TYPE,
-                                MyUtils.COLUMN_IN_SOLD_PRODUCT_TABLE.SOLD_DATE_TIME,
-                                soldProductObservableList,tfSearch));
-                    }break;
-                }
-            }break;
 
-            case "Прийняті":{
-                switch (cbSearchColumn.getSelectionModel().getSelectedItem().trim()){
-                    case "ID":{
-                        comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
-                                MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_ID,
-                                comingProductObservableList,tfSearch));
+                    case "Прийняті":{
+                        switch (cbSearchColumn.getSelectionModel().getSelectedItem().trim()){
+                            case "ID":{
+                                comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
+                                        MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_ID,
+                                        comingProductObservableList,tfSearch));
+                            }break;
+                            case "Назва продукту":{
+                                comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
+                                        MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_PRODUCT_NAME,
+                                        comingProductObservableList,tfSearch));
+                            }break;
+                            case "Продавець":{
+                                comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
+                                        MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_USER_NAME,
+                                        comingProductObservableList,tfSearch));
+                            }break;
+                            case "Ім'я клієнта":{
+                                comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
+                                        MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_CLIENT_NAME,
+                                        comingProductObservableList,tfSearch));
+                            }break;
+                            case "Кількість продукту":{
+                                comingProductTableView.setItems( filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
+                                        MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_PRODUCT_NUMBER,
+                                        comingProductObservableList,tfSearch));
+                            }break;
+                            case "Ціна продукту":{
+                                comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
+                                        MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_PRODUCT_PRICE,
+                                        comingProductObservableList,tfSearch));
+                            }break;
+                            case "Дата":{
+                                comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
+                                        MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_DATE_TIME,
+                                        comingProductObservableList,tfSearch));
+                            }break;
+                        }
                     }break;
-                    case "Назва продукту":{
-                        comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
-                                MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_PRODUCT_NAME,
-                                comingProductObservableList,tfSearch));
-                    }break;
-                    case "Ім'я користувача":{
-                        comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
-                                MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_USER_NAME,
-                                comingProductObservableList,tfSearch));
-                    }break;
-                    case "Ім'я клієнта":{
-                        comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
-                                MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_CLIENT_NAME,
-                                comingProductObservableList,tfSearch));
-                    }break;
-                    case "Кількість продукту":{
-                        comingProductTableView.setItems( filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
-                                MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_PRODUCT_NUMBER,
-                                comingProductObservableList,tfSearch));
-                    }break;
-                    case "Ціна продукту":{
-                        comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
-                                MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_PRODUCT_PRICE,
-                                comingProductObservableList,tfSearch));
-                    }break;
-                    case "Дата":{
-                        comingProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.COMING_PRODUCT_TYPE,
-                                MyUtils.COLUMN_IN_COMING_PRODUCT_TABLE.COMING_DATE_TIME,
-                                comingProductObservableList,tfSearch));
-                    }break;
-                }
-            }break;
 
-            case "Відділи":{
-                switch (cbSearchColumn.getSelectionModel().getSelectedItem().trim()){
-                    case "ID":{
-                        departmentProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.DEPARTMENT_TYPE,
-                                MyUtils.COLUMN_IN_DEPARTMENT_TABLE.DEPARTMENT_ID,
-                                departmentObservableList,tfSearch));
-                    }break;
-                    case "Назва":{
-                        departmentProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.DEPARTMENT_TYPE,
-                                MyUtils.COLUMN_IN_DEPARTMENT_TABLE.DEPARTMENT_NAME,
-                                departmentObservableList,tfSearch));
-                    }break;
-                    case "Адреса":{
-                        departmentProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.DEPARTMENT_TYPE,
-                                MyUtils.COLUMN_IN_DEPARTMENT_TABLE.DEPARTMENT_ADDRESS,
-                                departmentObservableList,tfSearch));
+                    case "Відділи":{
+                        switch (cbSearchColumn.getSelectionModel().getSelectedItem().trim()){
+                            case "ID":{
+                                departmentProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.DEPARTMENT_TYPE,
+                                        MyUtils.COLUMN_IN_DEPARTMENT_TABLE.DEPARTMENT_ID,
+                                        departmentObservableList,tfSearch));
+                            }break;
+                            case "Назва":{
+                                departmentProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.DEPARTMENT_TYPE,
+                                        MyUtils.COLUMN_IN_DEPARTMENT_TABLE.DEPARTMENT_NAME,
+                                        departmentObservableList,tfSearch));
+                            }break;
+                            case "Адреса":{
+                                departmentProductTableView.setItems(filterForTable(MyUtils.TYPES_OF_TABLE.DEPARTMENT_TYPE,
+                                        MyUtils.COLUMN_IN_DEPARTMENT_TABLE.DEPARTMENT_ADDRESS,
+                                        departmentObservableList,tfSearch));
+                            }break;
+                        }
                     }break;
                 }
-            }break;
+            }else {
+                MyUtils.AlertError("Помилка введення","Виберіть стовпець для пошуку!");
+            }
+        }else {
+            MyUtils.AlertError("Помилка введення","Виберіть таблицю для пошуку!");
         }
     }
 
@@ -467,7 +520,7 @@ public class MainWindowController {
                 (cbSearchTable.getSelectionModel().getSelectedItem().trim().equals("Прийняті"))){
             cbSearchColumn.getItems().addAll("ID",
                     "Назва продукту",
-                    "Ім'я користувача",
+                    "Продавець",
                     "Ім'я клієнта",
                     "Кількість продукту",
                     "Ціна продукту",
@@ -481,6 +534,4 @@ public class MainWindowController {
 
     public void onColumnSelect(ActionEvent actionEvent) {
     }
-
-
 }
