@@ -56,6 +56,22 @@ public class MainWindowController {
     Label lbCurrentUserStatus;
     @FXML
     TextField tfSearch;
+    @FXML
+    MenuItem mbAddSoldProduct;
+    @FXML
+    MenuItem mbAddComingProduct;
+    @FXML
+    MenuItem mbAddProduct;
+    @FXML
+    MenuItem mbAddDepartment;
+    @FXML
+    MenuItem mbDeleteSoldProduct;
+    @FXML
+    MenuItem mbDeleteComingProduct;
+    @FXML
+    MenuItem mbDeleteProduct;
+    @FXML
+    MenuItem mbDeleteDepartment;
 
     TableColumn<SoldProduct,String> tcsoldProductId=new TableColumn<>();
     TableColumn<SoldProduct,String> tcSoldProductName=new TableColumn<>();
@@ -86,6 +102,10 @@ public class MainWindowController {
         lbCurrentUserName.setText(MyUtils.readTmpFile()[0].trim());
         lbCurrentUserStatus.setText(MyUtils.readTmpFile()[1].trim());
         if (MyUtils.readTmpFile()[1].trim().equals(Status.getUSER())) {
+            mbAddDepartment.setVisible(false);
+            mbAddProduct.setVisible(false);
+            mbDeleteDepartment.setVisible(false);
+            mbDeleteProduct.setVisible(false);
             cbCurrentUser.getItems().add(MyUtils.readTmpFile()[0]);
             cbCurrentUser.getSelectionModel().selectFirst();
             cbCurrentYear.getItems().addAll(MyUtils.getYearsFromDB());

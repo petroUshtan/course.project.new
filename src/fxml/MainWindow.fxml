@@ -24,10 +24,8 @@
          <children>
             <Label text="Дані по користувачу" />
             <ComboBox fx:id="cbCurrentUser" onAction="#onUpdateData" prefWidth="150.0" />
-            <Label layoutX="20.0" layoutY="14.0" text="Рік" />
-            <ComboBox fx:id="cbCurrentYear" layoutX="144.0" layoutY="10.0" onAction="#onUpdateData" prefHeight="25.0" prefWidth="88.0" />
-            <Label layoutX="304.0" layoutY="14.0" text="Місяць" />
-            <ComboBox fx:id="cbCurrentMonth" layoutX="330.0" layoutY="10.0" onAction="#onUpdateData" prefHeight="25.0" prefWidth="88.0" />
+            <Label layoutX="20.0" layoutY="14.0" prefHeight="17.0" prefWidth="66.0" text="Рік" />
+            <ComboBox fx:id="cbCurrentYear" layoutX="144.0" layoutY="10.0" onAction="#onUpdateData" prefHeight="25.0" prefWidth="132.0" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -83,7 +81,7 @@
                   <MenuItem fx:id="mbAddProduct" mnemonicParsing="false" onAction="#onMbAddProduct" text="Додати продукт" />
                   <MenuItem fx:id="mbAddDepartment" mnemonicParsing="false" onAction="#onMbAddDepartment" text="Додати відділ" />
                   <MenuItem fx:id="mbDeleteSoldProduct" mnemonicParsing="false" onAction="#onMbDeleteSoldProduct" text="Видалити проданий" />
-                  <MenuItem fx:id="mbDeleteComing" mnemonicParsing="false" onAction="#onMbDeleteCommingProduct" text="Видалити отриманий" />
+                  <MenuItem fx:id="mbDeleteComingProduct" mnemonicParsing="false" onAction="#onMbDeleteCommingProduct" text="Видалити отриманий" />
                   <MenuItem fx:id="mbDeleteProduct" mnemonicParsing="false" onAction="#onMbDeleteProduct" text="Видалити продукт" />
                   <MenuItem fx:id="mbDeleteDepartment" mnemonicParsing="false" onAction="#onMbDeleteDepartment" text="Видалити відділ" />
             </items>
@@ -106,7 +104,7 @@
             <Label prefHeight="17.0" prefWidth="114.0" text="Пошук в таблиці" />
             <ComboBox fx:id="cbSearchTable" onAction="#onTableSelect" prefHeight="25.0" prefWidth="150.0" />
             <Label layoutX="20.0" layoutY="14.0" text="по стовпцю" />
-            <ComboBox fx:id="cbSearchColumn" layoutX="144.0" layoutY="10.0" onAction="#onColumnSelect" prefHeight="25.0" prefWidth="88.0" />
+            <ComboBox fx:id="cbSearchColumn" layoutX="144.0" layoutY="10.0" onAction="#onColumnSelect" prefHeight="25.0" prefWidth="133.0" />
             <Label layoutX="304.0" layoutY="14.0" text="запит" />
             <TextField fx:id="tfSearch" prefHeight="25.0" prefWidth="190.0" />
          </children>

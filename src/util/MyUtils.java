@@ -68,7 +68,7 @@ public class MyUtils {
     }
 
     public static Long setUniqueId(){
-        return System.currentTimeMillis();
+        return System.nanoTime();
     }
 
     public static void AlertError(String title,String message){
@@ -364,6 +364,36 @@ public class MyUtils {
     public static String getCurrentDateTime(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         return dateFormat.format(new Date());
+    }
+
+    public static void fillTestTable() throws SQLException {
+        double []array = new double[100000];
+        for (Integer i=0;i<100000;i++){
+            double t = System.nanoTime();
+            UtilForDBWorking.addRecord(new User(i.toString(),i.toString(),i.toString()));
+            array[i]=System.nanoTime()-t;
+        }
+        double sum=0;
+        for (double d : array){
+            sum+=d;
+        }
+        System.out.println("Середній час запису в таблицю "+sum/100000 +"наносекунд");
+    }
+    public static void deleteTestTable() throws SQLException {
+        ArrayList<Double> array = new ArrayList<>();
+        List<User> users = UtilForDBWorking.getRecords(new User());
+        for (User user : users){
+            if((user.getStatus().trim()!="USER")&&(user.getStatus().trim()!="MANAGER")&&(user.getStatus().trim()!="ADMIN")){
+                double t = System.nanoTime();
+                UtilForDBWorking.deleteRecord(user);
+                array.add(System.nanoTime()-t);
+            }
+        }
+        double sum=0;
+        for (Double d : array){
+            sum+=d;
+        }
+        System.out.println("Середній час видалення з таблиці "+sum/100000 +"наносекунд");
     }
 
 }

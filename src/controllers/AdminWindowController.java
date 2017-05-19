@@ -39,7 +39,7 @@ public class AdminWindowController {
     ObservableList<User> observableList ;
     ObservableList<String> observableListStatus ;
     @FXML
-    void initialize(){
+    void initialize() throws SQLException {
         try {
             observableList= FXCollections.observableArrayList(UtilForDBWorking.getRecords(new User()));
             observableListStatus= FXCollections.observableArrayList(Status.getStatuses());
@@ -52,7 +52,6 @@ public class AdminWindowController {
         tcStatus.setCellValueFactory(new PropertyValueFactory<User,String>("status"));
         tvUserList.setItems(observableList);
         cbStatus.setItems(observableListStatus);
-
         tvUserList.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -91,7 +90,9 @@ public class AdminWindowController {
 
     public void Delete (){
         try {
+            Double currentTime = new Double(System.nanoTime());
             UtilForDBWorking.deleteRecord(((tvUserList.getSelectionModel().getSelectedItem())));
+            System.out.println("Видалення з таблиці зайняло "+(System.nanoTime()-currentTime)+" наносекунд.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -103,7 +104,9 @@ public class AdminWindowController {
             if((isUnic())&&(!tfUsername.getText().equals(""))&&(!tfPassword.getText().equals(""))){
                 User user = new User(tfUsername.getText(),
                         tfPassword.getText(),cbStatus.getSelectionModel().getSelectedItem());
+                Double currentTime = new Double(System.nanoTime());
                 new UtilForDBWorking().addRecord(user);
+                System.out.println("Запис в таблицю зайняв "+(System.nanoTime()-currentTime)+" наносекунд.");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -132,7 +135,11 @@ public class AdminWindowController {
 
     void update(){
         try {
+
+            Double currentTime = new Double(System.nanoTime());
             observableList= FXCollections.observableArrayList(UtilForDBWorking.getRecords(new User()));
+            System.out.println("Вибірка всіх даних з таблиці зайняла "+(System.nanoTime()-currentTime)+" наносекунд.");
+
         }
         catch (SQLException e){
             e.printStackTrace();

@@ -18,6 +18,7 @@
         <mapping resource="coming_product.hbm.xml"/>
         <mapping resource="product.hbm.xml"/>
         <mapping resource="department.hbm.xml"/>
+        <mapping resource="history.hbm.xml"/>
 
         <!--<property name="hbm2ddl.auto">update</property>-->
         <!-- DB schema will be updated if needed -->

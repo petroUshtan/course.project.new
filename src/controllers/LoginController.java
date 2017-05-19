@@ -16,6 +16,8 @@ import javafx.stage.WindowEvent;
 import objects.Status;
 import util.MyUtils;
 
+import java.sql.SQLException;
+
 
 public class LoginController {
     @FXML
@@ -38,8 +40,6 @@ public class LoginController {
                MyUtils.writeTmpFile(tfUsername.getText(),lg.getStatusOfUser(tfUsername.getText(),tfPassword.getText()));
                if((lg.getStatusOfUser(tfUsername.getText(),tfPassword.getText())).equals(Status.getADMIN())){
                    rootNode = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/AdminWindow.fxml"));
-
-
                }else {
                    rootNode = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainWindow.fxml"));
                }
@@ -64,7 +64,7 @@ public class LoginController {
         }
     }
 
-    public void onCancel(ActionEvent actionEvent) {
+    public void onCancel(ActionEvent actionEvent) throws SQLException {
         Node source = (Node)  actionEvent.getSource();
         Stage stage  = (Stage) source.getScene().getWindow();
         stage.close();
